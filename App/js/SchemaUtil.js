@@ -29,24 +29,24 @@ xui.Class('App.SchemaUtil', 'xui.Module',{
                 .setRowNumbered(true)
                 .setHeader([
                     {
-                        "id":"First Name",
+                        "id":"fname",
                         "caption":"First Name",
                         "type":"input",
                         "width":"8em",
                         "_cells":{ },
-                        "_serialId":"-h_e",
+                        "_serialId":"-h_d",
                         "_colWidth":"8em",
                         "_cellWidth":"8em",
                         "_hcellheight":"1.8333333333333333em",
                         "_region":2
                     },
                     {
-                        "id":"Last Name",
+                        "id":"lname",
                         "caption":"Last Name",
                         "type":"input",
                         "width":"8em",
                         "_cells":{ },
-                        "_serialId":"-h_f",
+                        "_serialId":"-h_e",
                         "_colWidth":"8em",
                         "_cellWidth":"8em",
                         "_hcellheight":"1.8333333333333333em",
@@ -62,7 +62,7 @@ xui.Class('App.SchemaUtil', 'xui.Module',{
                         "min":0,
                         "max":200,
                         "_cells":{ },
-                        "_serialId":"-h_g",
+                        "_serialId":"-h_f",
                         "_colWidth":"8em",
                         "_cellWidth":"8em",
                         "_hcellheight":"1.8333333333333333em",
