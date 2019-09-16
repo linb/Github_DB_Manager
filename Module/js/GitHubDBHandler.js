@@ -200,7 +200,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
         createObject : function(requestId, repo,  objectName, schema, onSuccess, onFail){
             var api=this,
                 clientWithAuth = api.getGithubClient();
-            clientWithAuth.repos.createFile({
+            clientWithAuth.repos.createOrUpdateFile({
                 owner:api.getGithubUser(),
                 repo:repo,
                 path: api.DB_ROOT_PATH+"/"+objectName+"/"+api.OBJ_SCHEMA_FILE,
@@ -432,7 +432,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                 content = JSON.stringify(item);
             itemId = itemId || item._id;
             api.itemExist(requestId, repo, objectName, itemId, function(req, sha){
-                clientWithAuth.repos.updateFile({
+                clientWithAuth.repos.createOrUpdateFile({
                     owner:api.getGithubUser(),
                     repo:repo,
                     path: api.DB_ROOT_PATH+"/"+objectName+"/"+itemId + ".json",
