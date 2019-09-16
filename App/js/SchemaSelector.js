@@ -38,11 +38,10 @@ xui.Class('App.SchemaSelector', 'xui.Module',{
                 xui.create("xui.UI.Dialog")
                 .setHost(host,"xui_ui_dialog6")
                 .setLeft("3.3333333333333335em")
-                .setTop("2.5em")
+                .setTop("1.6666666666666667em")
                 .setWidth("57.5em")
                 .setCaption("Select a schema")
                 .setMinBtn(false)
-                .setModal(true)
             );
             
             host.xui_ui_dialog6.append(
@@ -71,6 +70,15 @@ xui.Class('App.SchemaSelector', 'xui.Module',{
             );
             
             host.xui_ui_layout13.append(
+                xui.create("xui.UI.Panel")
+                .setHost(host,"xui_ui_panel13")
+                .setLeft("2.5em")
+                .setTop("6.666666666666667em")
+                .setCaption("Templates"),
+                "before"
+            );
+            
+            host.xui_ui_panel13.append(
                 xui.create("xui.UI.List")
                 .setHost(host,"xui_ui_list5")
                 .setDirtyMark(false)
@@ -113,23 +121,21 @@ xui.Class('App.SchemaSelector', 'xui.Module',{
                         "okFlag":"_DI_succeed",
                         "koFlag":"_DI_fail"
                     }
-                ]),
-                "before"
+                ])
             );
             
             host.xui_ui_layout13.append(
-                xui.create("xui.UI.Input")
-                .setHost(host,"xui_ui_input1")
-                .setDirtyMark(false)
-                .setDock("fill")
-                .setLeft("5.833333333333333em")
+                xui.create("xui.UI.Panel")
+                .setHost(host,"xui_ui_panel14")
+                .setLeft("3.3333333333333335em")
                 .setTop("8.333333333333334em")
-                .setWidth("18em")
-                .setHeight("10em")
-                .setLabelSize("8em")
-                .setLabelPos("none")
-                .setMultiLines(true),
+                .setCaption("Schema code"),
                 "main"
+            );
+            
+            host.xui_ui_panel14.append(
+                xui.create("xui.Module.JSONEditor", "xui.Module")
+                .setHost(host,"xui_module_jsoneditor3")
             );
             
             host.xui_ui_dialog6.append(
@@ -170,15 +176,15 @@ xui.Class('App.SchemaSelector', 'xui.Module',{
                 "actions":[
                     {
                         "desc":"set text",
-                        "type":"control",
-                        "target":"xui_ui_input1",
+                        "type":"module",
+                        "target":"xui_module_jsoneditor3",
                         "args":[
-                            "{page.xui_ui_input1.setUIValue()}",
+                            "{page.xui_module_jsoneditor3.setValue}",
                             undefined,
                             undefined,
                             "{args[0]}"
                         ],
-                        "method":"setUIValue",
+                        "method":"$Functions.setValue",
                         "redirection":"other:callback:call"
                     },
                     {
