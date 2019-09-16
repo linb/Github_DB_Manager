@@ -577,6 +577,114 @@ xui.Class('App', 'xui.Module',{
                 xui.create("Module.GitHubDBHandler", "xui.Module")
                 .setHost(host,"module_githubdb")
                 .setEvents({
+                    "onError":[
+                        {
+                            "desc":"show error",
+                            "type":"other",
+                            "target":"msg",
+                            "args":[
+                                "Error",
+                                "{args[0]}"
+                            ],
+                            "method":"alert",
+                            "onOK":2
+                        }
+                    ],
+                    "onGithubLogin":[
+                        {
+                            "desc":"set avatar",
+                            "type":"control",
+                            "target":"xui_ui_avatar",
+                            "args":[
+                                { },
+                                {
+                                    "src":"{args[1]}"
+                                }
+                            ],
+                            "method":"setProperties"
+                        },
+                        {
+                            "desc":"set name",
+                            "type":"control",
+                            "target":"xui_ui_labelUser",
+                            "args":[
+                                { },
+                                {
+                                    "caption":"{args[0]}"
+                                }
+                            ],
+                            "method":"setProperties"
+                        },
+                        {
+                            "desc":"set name to global",
+                            "type":"other",
+                            "target":"var",
+                            "args":[
+                                "githubUser",
+                                "{args[0]}"
+                            ],
+                            "method":"global"
+                        },
+                        {
+                            "desc":"pop repos list",
+                            "type":"other",
+                            "target":"callback",
+                            "args":[
+                                "{page.functions.popRepoSearchWnd}"
+                            ],
+                            "method":"call"
+                        }
+                    ],
+                    "onReposList":[
+                        {
+                            "desc":"ensure request",
+                            "type":"none",
+                            "target":"none",
+                            "args":[ ],
+                            "method":"none",
+                            "conditions":[
+                                {
+                                    "left":"{args[0]}",
+                                    "symbol":"!=",
+                                    "right":"forSelectRepo"
+                                }
+                            ],
+                            "return":false
+                        },
+                        {
+                            "desc":"set list",
+                            "type":"control",
+                            "target":"xui_lst_repos",
+                            "args":[
+                                "{page.xui_lst_repos.setItems()}",
+                                "none",
+                                "true",
+                                "{args[1]}"
+                            ],
+                            "method":"setItems",
+                            "redirection":"other:callback:call"
+                        },
+                        {
+                            "desc":"set total",
+                            "type":"control",
+                            "target":"xui_ui_pagebar5",
+                            "args":[
+                                "{page.xui_ui_pagebar5.setTotalCount()}",
+                                undefined,
+                                undefined,
+                                "{args[2]}"
+                            ],
+                            "method":"setTotalCount",
+                            "redirection":"other:callback:call"
+                        },
+                        {
+                            "desc":"free ui",
+                            "type":"other",
+                            "target":"msg",
+                            "args":[ ],
+                            "method":"free"
+                        }
+                    ],
                     "onObjectsList":[
                         {
                             "desc":"list",
