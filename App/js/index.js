@@ -118,16 +118,10 @@ xui.Class('App', 'xui.Module',{
                     },
                     {
                         "desc":"new",
-                        "type":"other",
-                        "target":"callback",
-                        "args":[
-                            "{page.functions.createObject}",
-                            undefined,
-                            undefined,
-                            "{}",
-                            ""
-                        ],
-                        "method":"call",
+                        "type":"page",
+                        "target":"App.SchemaSelector",
+                        "args":[ ],
+                        "method":"show",
                         "conditions":[
                             {
                                 "left":"{args[1].id}",
