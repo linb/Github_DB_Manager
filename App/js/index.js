@@ -837,6 +837,31 @@ xui.Class('App', 'xui.Module',{
                     ],
                     "redirection":"other:callback:call"
                 }
+            ],
+            "onMessage":[
+                {
+                    "desc":"create table",
+                    "type":"module",
+                    "target":"module_githubdb",
+                    "args":[
+                        "{page.module_githubdb.createObject}",
+                        undefined,
+                        undefined,
+                        "createtable",
+                        "{global.repoName}",
+                        "{args[2]}",
+                        "{args[3]}"
+                    ],
+                    "method":"$Functions.createObject",
+                    "conditions":[
+                        {
+                            "left":"{args[1]}",
+                            "symbol":"=",
+                            "right":"schema"
+                        }
+                    ],
+                    "redirection":"other:callback:call"
+                }
             ]
         },
         properties:{
