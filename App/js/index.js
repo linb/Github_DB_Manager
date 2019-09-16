@@ -157,19 +157,13 @@ xui.Class('App', 'xui.Module',{
             );
             
             host.xui_panel_left.append(
-                xui.create("xui.UI.TreeView")
-                .setHost(host,"xui_tv_folders")
+                xui.create("xui.UI.List")
+                .setHost(host,"xui_list_tables")
                 .setDirtyMark(false)
                 .setLeft("0em")
                 .setTop("0em")
                 .setSelMode("none")
                 .setTagCmds([
-                    {
-                        "id":"new",
-                        "itemClass":"xuicon xui-uicmd-add",
-                        "tips":"Add new json",
-                        "tag":"branch"
-                    },
                     {
                         "id":"delete",
                         "itemClass":"xuicon xui-uicmd-close",
@@ -179,32 +173,12 @@ xui.Class('App', 'xui.Module',{
                 ])
                 .onCmd([
                     {
-                        "desc":"new",
-                        "type":"other",
-                        "target":"callback",
-                        "args":[
-                            "{page.functions.createFile}",
-                            undefined,
-                            undefined,
-                            "{args[1].id}/"
-                        ],
-                        "method":"call",
-                        "conditions":[
-                            {
-                                "left":"{args[2]}",
-                                "symbol":"=",
-                                "right":"new"
-                            }
-                        ],
-                        "event":3
-                    },
-                    {
                         "desc":"if delete",
                         "type":"other",
                         "target":"msg",
                         "args":[
                             "Delete?",
-                            "Are you sure to delete this file?"
+                            "Are you sure to delete this object(table)?"
                         ],
                         "method":"confirm",
                         "okFlag":"_confirm_yes",
@@ -224,7 +198,7 @@ xui.Class('App', 'xui.Module',{
                         "type":"other",
                         "target":"callback",
                         "args":[
-                            "{page.functions.deleteFile}",
+                            "{page.functions.deleteObject}",
                             undefined,
                             undefined,
                             "{args[1].id}",
@@ -243,37 +217,6 @@ xui.Class('App', 'xui.Module',{
                                 "right":""
                             }
                         ]
-                    }
-                ])
-                .onGetContent([
-                    {
-                        "desc":"fetchFolderContent",
-                        "type":"module",
-                        "target":"module_githubdb",
-                        "args":[
-                            "{page.module_githubdb.listFiles}",
-                            undefined,
-                            undefined,
-                            "{args[1].id}",
-                            "{global.repoName}",
-                            "{args[1].id}",
-                            "",
-                            "json",
-                            undefined,
-                            ""
-                        ],
-                        "method":"$Functions.listFiles",
-                        "redirection":"other:callback:call"
-                    },
-                    {
-                        "desc":"set callback",
-                        "type":"other",
-                        "target":"var",
-                        "args":[
-                            "treeviewCallback",
-                            "{args[2]}"
-                        ],
-                        "method":"global"
                     }
                 ])
             );
@@ -485,7 +428,7 @@ xui.Class('App', 'xui.Module',{
                     {
                         "desc":"clr tree",
                         "type":"control",
-                        "target":"xui_tv_folders",
+                        "target":"xui_list_tables",
                         "args":[ ],
                         "method":"clearItems"
                     }
@@ -648,6 +591,23 @@ xui.Class('App', 'xui.Module',{
             append(
                 xui.create("Module.GitHubDBHandler", "xui.Module")
                 .setHost(host,"module_githubdb")
+                .setEvents({
+                    "onObjectsList":[
+                        {
+                            "desc":"list",
+                            "type":"control",
+                            "target":"xui_list_tables",
+                            "args":[
+                                "{page.xui_list_tables.setItems()}",
+                                undefined,
+                                undefined,
+                                "{args[1]}"
+                            ],
+                            "method":"setItems",
+                            "redirection":"other:callback:call"
+                        }
+                    ]
+                })
             );
             
             append(
@@ -907,20 +867,17 @@ xui.Class('App', 'xui.Module',{
                         "method":"global"
                     },
                     {
-                        "desc":"fetchFiles",
+                        "desc":"list tables",
                         "type":"module",
                         "target":"module_githubdb",
                         "args":[
-                            "{page.module_githubdb.listFiles}",
+                            "{page.module_githubdb.listObjects}",
                             undefined,
                             undefined,
-                            "fetchRoot",
-                            "{global.repoName}",
-                            undefined,
-                            "all",
-                            "json"
+                            "listobjs",
+                            "{args[0]}"
                         ],
-                        "method":"$Functions.listFiles",
+                        "method":"$Functions.listObjects",
                         "redirection":"other:callback:call"
                     }
                 ]
