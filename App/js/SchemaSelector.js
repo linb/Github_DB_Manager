@@ -230,13 +230,6 @@ xui.Class('App.SchemaSelector', 'xui.Module',{
                             "Specify Schema please!"
                         ],
                         "method":"pop",
-                        "conditions":[
-                            {
-                                "left":"{temp.schema}",
-                                "symbol":"empty",
-                                "right":""
-                            }
-                        ],
                         "return":false
                     },
                     {
