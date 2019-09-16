@@ -117,28 +117,11 @@ xui.Class('App', 'xui.Module',{
                         "event":3
                     },
                     {
-                        "desc":"refresh",
-                        "type":"other",
-                        "target":"callback",
-                        "args":[
-                            "{page.functions.refreshRoot}"
-                        ],
-                        "method":"call",
-                        "conditions":[
-                            {
-                                "left":"{args[1].id}",
-                                "symbol":"=",
-                                "right":"refresh"
-                            }
-                        ],
-                        "event":3
-                    },
-                    {
                         "desc":"new",
                         "type":"other",
                         "target":"callback",
                         "args":[
-                            "{page.functions.createFile}",
+                            "{page.functions.createObject}",
                             undefined,
                             undefined,
                             "{}",
@@ -702,7 +685,7 @@ xui.Class('App', 'xui.Module',{
                     "type":"module",
                     "target":"module_githubdb",
                     "args":[
-                        "{page.module_githubdb.createFile}",
+                        "{page.module_githubdb.createObject}",
                         undefined,
                         undefined,
                         "newFile",
@@ -713,7 +696,7 @@ xui.Class('App', 'xui.Module',{
                         "{temp.freeUI}",
                         "{temp.freeUI}"
                     ],
-                    "method":"$Functions.createFile",
+                    "method":"$Functions.createObject",
                     "conditions":[
                         {
                             "left":"{args[0]}",
@@ -884,30 +867,7 @@ xui.Class('App', 'xui.Module',{
                     }
                 ]
             },
-            "refreshRoot":{
-                "desc":"refresh root files",
-                "params":[ ],
-                "actions":[
-                    {
-                        "desc":"fetchFiles",
-                        "type":"module",
-                        "target":"module_githubdb",
-                        "args":[
-                            "{page.module_githubdb.listFiles}",
-                            undefined,
-                            undefined,
-                            "fetchRoot",
-                            "{global.repoName}",
-                            undefined,
-                            "all",
-                            "json"
-                        ],
-                        "method":"$Functions.listFiles",
-                        "redirection":"other:callback:call"
-                    }
-                ]
-            },
-            "createFile":{
+            "createObject":{
                 "desc":"create json",
                 "params":[
                     {
@@ -973,10 +933,10 @@ xui.Class('App', 'xui.Module',{
                         "type":"module",
                         "target":"module_githubdb",
                         "args":[
-                            "{page.module_githubdb.createFile}",
+                            "{page.module_githubdb.createObject}",
                             undefined,
                             undefined,
-                            "createFile",
+                            "createObject",
                             "{global.repoName}",
                             "{args[0]}{temp.okData}.json",
                             "{global.dftFileContent}",
@@ -984,7 +944,7 @@ xui.Class('App', 'xui.Module',{
                             "{xui.free}",
                             "{xui.free}"
                         ],
-                        "method":"$Functions.createFile",
+                        "method":"$Functions.createObject",
                         "redirection":"other:callback:call"
                     }
                 ]
