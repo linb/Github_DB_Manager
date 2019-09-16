@@ -196,14 +196,17 @@ xui.Class('App.SchemaSelector', 'xui.Module',{
                     },
                     {
                         "desc":"get value 2",
-                        "type":"other",
-                        "target":"var",
+                        "type":"module",
+                        "target":"xui_module_jsoneditor3",
                         "args":[
-                            "schema",
-                            "{page.xui_module_jsoneditor3.getValue()}"
+                            "{page.xui_module_jsoneditor3.getValue}",
+                            "temp",
+                            "schema.prop",
+                            "{true}"
                         ],
-                        "method":"temp",
-                        "event":1
+                        "method":"$Functions.getValue",
+                        "event":1,
+                        "redirection":"other:callback:call"
                     },
                     {
                         "desc":"check value 1",
@@ -224,24 +227,6 @@ xui.Class('App.SchemaSelector', 'xui.Module',{
                         "return":false
                     },
                     {
-                        "desc":"check value 2",
-                        "type":"other",
-                        "target":"msg",
-                        "args":[
-                            "No schema",
-                            "Specify Schema please!"
-                        ],
-                        "method":"pop",
-                        "return":false,
-                        "conditions":[
-                            {
-                                "left":"{temp.schema}",
-                                "symbol":"=",
-                                "right":"{{}}"
-                            }
-                        ]
-                    },
-                    {
                         "desc":"check value 22",
                         "type":"other",
                         "target":"msg",
@@ -252,7 +237,7 @@ xui.Class('App.SchemaSelector', 'xui.Module',{
                         "method":"pop",
                         "conditions":[
                             {
-                                "left":"{temp.schema}",
+                                "left":"{temp.schema.prop}",
                                 "symbol":"=",
                                 "right":"[]"
                             }
@@ -264,8 +249,8 @@ xui.Class('App.SchemaSelector', 'xui.Module',{
                         "target":"App",
                         "args":[
                             "{page.postMessage()}",
-                            undefined,
-                            undefined,
+                            "none",
+                            "",
                             "createObject",
                             "{temp.name}",
                             "{temp.schema}"
