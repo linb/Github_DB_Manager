@@ -40,8 +40,10 @@ xui.Class('App.SchemaSelector', 'xui.Module',{
                 .setLeft("3.3333333333333335em")
                 .setTop("1.6666666666666667em")
                 .setWidth("57.5em")
+                .setHeight("32.5em")
                 .setCaption("Select a schema")
                 .setMinBtn(false)
+                .setModal(true)
             );
             
             host.xui_ui_dialog6.append(
