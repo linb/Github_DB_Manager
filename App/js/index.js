@@ -722,7 +722,7 @@ xui.Class('App', 'xui.Module',{
                                     "right":""
                                 },
                                 {
-                                    "left":"{args[1]}.length",
+                                    "left":"{args[1].length}",
                                     "symbol":"=",
                                     "right":"{0}"
                                 }
