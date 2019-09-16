@@ -697,7 +697,36 @@ xui.Class('App', 'xui.Module',{
                                 "{args[1]}"
                             ],
                             "method":"setItems",
-                            "redirection":"other:callback:call"
+                            "redirection":"other:callback:call",
+                            "conditions":[
+                                {
+                                    "left":"{args[1]}",
+                                    "symbol":"defined",
+                                    "right":""
+                                }
+                            ]
+                        },
+                        {
+                            "desc":"no table",
+                            "type":"other",
+                            "target":"msg",
+                            "args":[
+                                "You can add a table (object ) now.",
+                                "No table yet"
+                            ],
+                            "method":"message",
+                            "conditions":[
+                                {
+                                    "left":"{args[1]}",
+                                    "symbol":"defined",
+                                    "right":""
+                                },
+                                {
+                                    "left":"{args[1]}.length",
+                                    "symbol":"=",
+                                    "right":"{0}"
+                                }
+                            ]
                         }
                     ]
                 })
