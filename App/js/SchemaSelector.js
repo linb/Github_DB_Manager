@@ -162,6 +162,35 @@ xui.Class('App.SchemaSelector', 'xui.Module',{
                 .setLabelSize("12em")
                 .setLabelCaption("Table/Object name")
                 .setValueFormat("^[\\w ]+$")
+                .beforeValueSet({
+                    "return":"{temp.v2}",
+                    "actions":[
+                        {
+                            "desc":"correct",
+                            "type":"other",
+                            "target":"var",
+                            "args":[
+                                "adjust",
+                                function(value){
+                                    return(value||"").replace(/[^w]/g,"").replace(/^[^w]+/g,"");
+                                }
+                            ],
+                            "method":"temp"
+                        },
+                        {
+                            "desc":"fun",
+                            "type":"other",
+                            "target":"callback",
+                            "args":[
+                                "{temp.adjust}",
+                                "temp",
+                                "v2",
+                                "{args[2]}"
+                            ],
+                            "method":"call"
+                        }
+                    ]
+                })
             );
             
             host.xui_ui_dialog6.append(
