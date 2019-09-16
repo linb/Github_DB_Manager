@@ -248,8 +248,8 @@ xui.Class('App.SchemaSelector', 'xui.Module',{
                             "{page.postMessage()}",
                             undefined,
                             undefined,
-                            "schema",
-                            "{page}",
+                            "createObject",
+                            "{global.repoName}",
                             "{temp.name}",
                             "{temp.schema}"
                         ],
