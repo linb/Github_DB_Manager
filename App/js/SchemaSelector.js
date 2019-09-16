@@ -268,7 +268,7 @@ xui.Class('App.SchemaSelector', 'xui.Module',{
                             {
                                 "left":"{temp.schema.prop}",
                                 "symbol":"=",
-                                "right":"[]"
+                                "right":"{[]}"
                             }
                         ]
                     },
