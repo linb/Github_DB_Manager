@@ -203,7 +203,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                 }
             });
         },
-        createObject : function(requestId, repo,  objectName, schema, onSuccess, onFail){
+        createObject : function(requestId, repo, objectName, schema, onSuccess, onFail){
             var api=this,
                 clientWithAuth = api.getGithubClient();
             clientWithAuth.repos.createOrUpdateFile({
@@ -213,8 +213,6 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                 message:"Created by CrossUI GitHub DB",
                 content: Base64.encode( JSON.stringify(schema)||" " )
             }).then(function(rsp){
-                var info = rsp.data.content;
-                item._id=itemId;
                 var args = [requestId, objectName];
                 if(false !== xui.tryF(onSuccess, args))
                     api.fireEvent("onObjectCreate", args);                
