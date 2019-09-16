@@ -226,6 +226,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
         },
         deleteObject:function(requestId, repo, objectName, onSuccess, onFail){
             var api=this,
+                clientWithAuth = api.getGithubClient(),
                 sourceOwner = api.getGithubUser(),
                 sourceRepo = repo,
                 path = api.DB_ROOT_PATH+"/"+objectName;
