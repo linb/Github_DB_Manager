@@ -206,7 +206,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
         createObject : function(requestId, repo, objectName, schema, onSuccess, onFail){
             var api=this,
                 clientWithAuth = api.getGithubClient();
-            clientWithAuth.repos.createOrUpdateFile({
+            clientWithAuth.repos.createFile({
                 owner:api.getGithubUser(),
                 repo:repo,
                 path: api.DB_ROOT_PATH+"/"+objectName+"/"+api.OBJ_SCHEMA_FILE,
