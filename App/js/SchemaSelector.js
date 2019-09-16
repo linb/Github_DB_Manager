@@ -23,6 +23,8 @@ xui.Class('App.SchemaSelector', 'xui.Module',{
             append(
                 xui.create("xui.APICaller")
                 .setHost(host,"api_1")
+                .setName("api_1")
+                .setResponseType("TEXT")
                 .setResponseCallback([
                     {
                         "type":"host",
@@ -30,7 +32,6 @@ xui.Class('App.SchemaSelector', 'xui.Module',{
                     }
                 ])
                 .setProxyType("AJAX")
-                .setResponseType("TEXT")
             );
             
             append(
@@ -41,6 +42,7 @@ xui.Class('App.SchemaSelector', 'xui.Module',{
                 .setWidth("33.333333333333336em")
                 .setCaption("Select a schema")
                 .setMinBtn(false)
+                .setModal(true)
             );
             
             host.xui_ui_dialog6.append(
