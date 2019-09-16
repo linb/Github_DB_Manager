@@ -132,7 +132,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                     api.fireEvent("onReposList", args);
             }).catch(function(e){
                 if(false!==xui.tryF(onFail,[e] )){
-                    api.fireEvent("onError", [requestId,"listRepos",xui.Debugger.getErrMsg(e)]);
+                    api.fireEvent("onError", [requestId,"listRepos",xui.getErrMsg(e)]);
                 }
             });            
         },
@@ -171,7 +171,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                     api.fireEvent("onObjectsList", args);                
             }).catch(function(e){
                 if(false!==xui.tryF(onFail,[e] )){
-                    api.fireEvent("onError", [requestId, "listObjects", xui.Debugger.getErrMsg(e)]);
+                    api.fireEvent("onError", [requestId, "listObjects", xui.getErrMsg(e)]);
                 }
             });
         },
@@ -188,12 +188,12 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                 }else{
                     var e= new Error("Not an object dir");
                     if(false!==xui.tryF(onFail,[e] )){
-                        api.fireEvent("onError", ["objectExist",requestId, xui.Debugger.getErrMsg(e)]);
+                        api.fireEvent("onError", ["objectExist",requestId, xui.getErrMsg(e)]);
                     }
                 }
             }).catch(function(e){
                 if(false!==xui.tryF(onFail,[e] )){
-                    api.fireEvent("onError", ["objectExist",requestId, xui.Debugger.getErrMsg(e)]);
+                    api.fireEvent("onError", ["objectExist",requestId, xui.getErrMsg(e)]);
                 }
             });
         },
@@ -214,7 +214,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                     api.fireEvent("onObjectCreate", args);                
             }).catch(function(e){
                 if(false!==xui.tryF(onFail,[e] )){
-                    api.fireEvent("onError", ["createObject",requestId, xui.Debugger.getErrMsg(e)]);
+                    api.fireEvent("onError", ["createObject",requestId, xui.getErrMsg(e)]);
                 }
             }); 
         },
@@ -279,7 +279,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                     if(false !== xui.tryF(onSuccess, args))
                         api.fireEvent("onObjectDelete", args);      
                 }).catch((e)=>{
-                    api.fireEvent("onError", ["deleteObject",requestId, xui.Debugger.getErrMsg(e)]);
+                    api.fireEvent("onError", ["deleteObject",requestId, xui.getErrMsg(e)]);
                 });
         },
 
@@ -326,11 +326,11 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                      if(false !== xui.tryF(onSuccess, args))
                         api.fireEvent("onItemsList", args);
                 }).catch(e=>{
-                     api.fireEvent("onError", ["listItems",requestId, xui.Debugger.getErrMsg(e)]);
+                     api.fireEvent("onError", ["listItems",requestId, xui.getErrMsg(e)]);
                 });
             }).catch(function(e){
                 if(false!==xui.tryF(onFail,[e] )){
-                    api.fireEvent("onError", ["listItems",requestId, xui.Debugger.getErrMsg(e)]);
+                    api.fireEvent("onError", ["listItems",requestId, xui.getErrMsg(e)]);
                 }
             });            
         },
@@ -352,7 +352,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                 }
             }).catch(function(e){
                 if(false!==xui.tryF(onFail,[e] )){
-                    api.fireEvent("onError", ["itemExist",requestId, xui.Debugger.getErrMsg(e)]);
+                    api.fireEvent("onError", ["itemExist",requestId, xui.getErrMsg(e)]);
                 }
             });
         },
@@ -370,7 +370,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                 if(rst.data[0]){
                     var e="This's a dir, not a file!";
                     if(false!==xui.tryF(onFail,[e] )){
-                        api.fireEvent("onError", ["readItem",requestId, xui.Debugger.getErrMsg(e)]);
+                        api.fireEvent("onError", ["readItem",requestId, xui.getErrMsg(e)]);
                     }
                 }
                 else{
@@ -391,7 +391,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                 }
             }).catch(function(e){
                 if(false!==xui.tryF(onFail,[e] )){
-                    api.fireEvent("onError", ["readItem",requestId, xui.Debugger.getErrMsg(e)]);
+                    api.fireEvent("onError", ["readItem",requestId, xui.getErrMsg(e)]);
                 }
             });
         },
@@ -422,7 +422,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                     api.fireEvent("onItemCreate", args);                
             }).catch(function(e){
                 if(false!==xui.tryF(onFail,[e] )){
-                    api.fireEvent("onError", ["createItem",requestId, xui.Debugger.getErrMsg(e)]);
+                    api.fireEvent("onError", ["createItem",requestId, xui.getErrMsg(e)]);
                 }
             });            
         },
@@ -446,7 +446,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                         api.fireEvent("onItemUpdate", args);                    
                 }).catch(function(e){
                     if(false!==xui.tryF(onFail,[e] )){
-                        api.fireEvent("onError", ["updateItem",requestId, xui.Debugger.getErrMsg(e)]);
+                        api.fireEvent("onError", ["updateItem",requestId, xui.getErrMsg(e)]);
                     }
                 });
             },function(req, msg){
@@ -472,7 +472,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                         api.fireEvent("onItemDelete", args);                    
                 }).catch(function(e){
                     if(false!==xui.tryF(onFail,[e] )){
-                        api.fireEvent("onError", ["deleteItem",requestId, xui.Debugger.getErrMsg(e)]);
+                        api.fireEvent("onError", ["deleteItem",requestId, xui.getErrMsg(e)]);
                     }
                 });
             },function(req, msg){
