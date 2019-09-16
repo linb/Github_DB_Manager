@@ -76,7 +76,7 @@ xui.Class('App.SchemaSelector', 'xui.Module',{
                 .setDirtyMark(false)
                 .setItems([
                     {
-                        "id":"Schema_card1.js",
+                        "id":"Schema_card1.json",
                         "caption":"Schema_card1"
                     }
                 ])
