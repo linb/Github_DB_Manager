@@ -1,6 +1,6 @@
 [
     {
-        "id":fname",
+        "id":"fname",
         "caption":"First Name",
         "type":"input",
         "width":"8em"
