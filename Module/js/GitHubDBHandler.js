@@ -35,7 +35,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                     .setShowEffects("Slide In TB")
                     .setHideEffects("Slide In TB")
                     .setPanelBgClr("#fff")
-                    .setIframeAutoLoad("{/}pages/GithubLoginLayer.html");
+                    .setIframeAutoLoad("{/}Module/js/Module.GitHubDBHandler/pages/GithubLoginLayer.html");
                 // ensure effects
                 loginLayer.render(true);
             }
