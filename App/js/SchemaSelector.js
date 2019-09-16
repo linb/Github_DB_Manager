@@ -179,6 +179,7 @@ xui.Class('App.SchemaSelector', 'xui.Module',{
                 .setLeft("3.0833333333333335em")
                 .setTop("0.5833333333333334em")
                 .setWidth("6em")
+                .setHeight("1.8333333333333333em")
                 .setCaption("OK")
                 .onClick([
                     {
@@ -230,7 +231,14 @@ xui.Class('App.SchemaSelector', 'xui.Module',{
                             "Specify Schema please!"
                         ],
                         "method":"pop",
-                        "return":false
+                        "return":false,
+                        "conditions":[
+                            {
+                                "left":"{temp.schema}",
+                                "symbol":"empty",
+                                "right":""
+                            }
+                        ]
                     },
                     {
                         "desc":"post message",
