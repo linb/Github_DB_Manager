@@ -249,9 +249,9 @@ xui.Class('App', 'xui.Module',{
                     {
                         "desc":"fetchFolderContent",
                         "type":"module",
-                        "target":"module_githubapi1",
+                        "target":"module_githubdb",
                         "args":[
-                            "{page.module_githubapi1.listFiles}",
+                            "{page.module_githubdb.listFiles}",
                             undefined,
                             undefined,
                             "{args[1].id}",
@@ -468,9 +468,9 @@ xui.Class('App', 'xui.Module',{
                     {
                         "desc":"logout",
                         "type":"module",
-                        "target":"module_githubapi1",
+                        "target":"module_githubdb",
                         "args":[
-                            "{page.module_githubapi1.githubLogout}"
+                            "{page.module_githubdb.githubLogout}"
                         ],
                         "method":"$Functions.githubLogout",
                         "redirection":"other:callback:call"
@@ -586,7 +586,7 @@ xui.Class('App', 'xui.Module',{
                         "type":"other",
                         "target":"callback",
                         "args":[
-                            "{page.functions.loadRootFiles}",
+                            "{page.functions.listObjects}",
                             undefined,
                             undefined,
                             "{args[1].id}"
@@ -646,8 +646,8 @@ xui.Class('App', 'xui.Module',{
             );
             
             append(
-                xui.create("xui.UI.MoudluePlaceHolder")
-                .setHost(host,"module_githubapi1")
+                xui.create("Module.GitHubDBHandler", "xui.Module")
+                .setHost(host,"module_githubdb")
             );
             
             append(
@@ -689,9 +689,9 @@ xui.Class('App', 'xui.Module',{
                 {
                     "desc":"action 1",
                     "type":"module",
-                    "target":"module_githubapi1",
+                    "target":"module_githubdb",
                     "args":[
-                        "{page.module_githubapi1.ensureGithubAuth}"
+                        "{page.module_githubdb.ensureGithubAuth}"
                     ],
                     "method":"$Functions.ensureGithubAuth",
                     "redirection":"other:callback:call"
@@ -711,9 +711,9 @@ xui.Class('App', 'xui.Module',{
                 {
                     "desc":"save",
                     "type":"module",
-                    "target":"module_githubapi1",
+                    "target":"module_githubdb",
                     "args":[
-                        "{page.module_githubapi1.updateFile}",
+                        "{page.module_githubdb.updateFile}",
                         undefined,
                         undefined,
                         "{args[0]}",
@@ -738,9 +738,9 @@ xui.Class('App', 'xui.Module',{
                 {
                     "desc":"new",
                     "type":"module",
-                    "target":"module_githubapi1",
+                    "target":"module_githubdb",
                     "args":[
-                        "{page.module_githubapi1.createFile}",
+                        "{page.module_githubdb.createFile}",
                         undefined,
                         undefined,
                         "newFile",
@@ -831,9 +831,9 @@ xui.Class('App', 'xui.Module',{
                     {
                         "desc":"Request list",
                         "type":"module",
-                        "target":"module_githubapi1",
+                        "target":"module_githubdb",
                         "args":[
-                            "{page.module_githubapi1.listRepos}",
+                            "{page.module_githubdb.listRepos}",
                             undefined,
                             undefined,
                             "forSelectRepo",
@@ -858,9 +858,9 @@ xui.Class('App', 'xui.Module',{
                     {
                         "desc":"search",
                         "type":"module",
-                        "target":"module_githubapi1",
+                        "target":"module_githubdb",
                         "args":[
-                            "{page.module_githubapi1.listRepos}",
+                            "{page.module_githubdb.listRepos}",
                             undefined,
                             undefined,
                             "forSelectRepo",
@@ -873,16 +873,11 @@ xui.Class('App', 'xui.Module',{
                     }
                 ]
             },
-            "loadRootFiles":{
-                "desc":"load root files",
+            "listObjects":{
+                "desc":"list all db/objects",
                 "params":[
                     {
                         "id":"repoName",
-                        "type":"String",
-                        "desc":""
-                    },
-                    {
-                        "id":"parentPath",
                         "type":"String",
                         "desc":""
                     }
@@ -914,9 +909,9 @@ xui.Class('App', 'xui.Module',{
                     {
                         "desc":"fetchFiles",
                         "type":"module",
-                        "target":"module_githubapi1",
+                        "target":"module_githubdb",
                         "args":[
-                            "{page.module_githubapi1.listFiles}",
+                            "{page.module_githubdb.listFiles}",
                             undefined,
                             undefined,
                             "fetchRoot",
@@ -937,9 +932,9 @@ xui.Class('App', 'xui.Module',{
                     {
                         "desc":"fetchFiles",
                         "type":"module",
-                        "target":"module_githubapi1",
+                        "target":"module_githubdb",
                         "args":[
-                            "{page.module_githubapi1.listFiles}",
+                            "{page.module_githubdb.listFiles}",
                             undefined,
                             undefined,
                             "fetchRoot",
@@ -1017,9 +1012,9 @@ xui.Class('App', 'xui.Module',{
                     {
                         "desc":"create file",
                         "type":"module",
-                        "target":"module_githubapi1",
+                        "target":"module_githubdb",
                         "args":[
-                            "{page.module_githubapi1.createFile}",
+                            "{page.module_githubdb.createFile}",
                             undefined,
                             undefined,
                             "createFile",
@@ -1075,9 +1070,9 @@ xui.Class('App', 'xui.Module',{
                     {
                         "desc":"delete",
                         "type":"module",
-                        "target":"module_githubapi1",
+                        "target":"module_githubdb",
                         "args":[
-                            "{page.module_githubapi1.deleteFile}",
+                            "{page.module_githubdb.deleteFile}",
                             undefined,
                             undefined,
                             "delete",
