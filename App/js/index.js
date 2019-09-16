@@ -987,16 +987,11 @@ xui.Class('App', 'xui.Module',{
                     }
                 ]
             },
-            "deleteFile":{
+            "deleteObject":{
                 "desc":"delete file",
                 "params":[
                     {
-                        "id":"path",
-                        "type":"String",
-                        "desc":""
-                    },
-                    {
-                        "id":"sha",
+                        "id":"objName",
                         "type":"String",
                         "desc":""
                     }
@@ -1029,17 +1024,14 @@ xui.Class('App', 'xui.Module',{
                         "type":"module",
                         "target":"module_githubdb",
                         "args":[
-                            "{page.module_githubdb.deleteFile}",
+                            "{page.module_githubdb.deleteObject}",
                             undefined,
                             undefined,
-                            "delete",
+                            "delObj",
                             "{global.repoName}",
-                            "{args[0]}",
-                            "{args[1]}",
-                            "{xui.free}",
-                            "{xui.free}"
+                            "{args[0]}"
                         ],
-                        "method":"$Functions.deleteFile",
+                        "method":"$Functions.deleteObject",
                         "redirection":"other:callback:call"
                     }
                 ]
