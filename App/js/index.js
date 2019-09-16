@@ -849,8 +849,8 @@ xui.Class('App', 'xui.Module',{
                         undefined,
                         "createtable",
                         "{global.repoName}",
-                        "{args[3]}",
-                        "{args[4]}"
+                        "{args[2]}",
+                        "{args[3]}"
                     ],
                     "method":"$Functions.createObject",
                     "conditions":[
