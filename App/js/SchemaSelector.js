@@ -161,7 +161,7 @@ xui.Class('App.SchemaSelector', 'xui.Module',{
                 .setWidth("35.833333333333336em")
                 .setLabelSize("12em")
                 .setLabelCaption("Table/Object name")
-                .setValueFormat("^[\\w ]*$")
+                .setValueFormat("^[\\w ]+$")
             );
             
             host.xui_ui_dialog6.append(
