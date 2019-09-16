@@ -23,8 +23,6 @@ xui.Class('App.SchemaSelector', 'xui.Module',{
             append(
                 xui.create("xui.APICaller")
                 .setHost(host,"api_1")
-                .setName("api_1")
-                .setResponseType("TEXT")
                 .setResponseCallback([
                     {
                         "type":"host",
@@ -32,6 +30,7 @@ xui.Class('App.SchemaSelector', 'xui.Module',{
                     }
                 ])
                 .setProxyType("AJAX")
+                .setResponseType("TEXT")
             );
             
             append(
@@ -155,6 +154,33 @@ xui.Class('App.SchemaSelector', 'xui.Module',{
                 .setTop("0.5833333333333334em")
                 .setWidth("6em")
                 .setCaption("OK")
+                .onClick([
+                    {
+                        "desc":"get value",
+                        "type":"other",
+                        "target":"var",
+                        "args":[
+                            "value",
+                            "{page.xui_module_jsoneditor3.getValue()}"
+                        ],
+                        "method":"temp",
+                        "event":1
+                    },
+                    {
+                        "desc":"post message",
+                        "type":"page",
+                        "target":"App.SchemaSelector",
+                        "args":[
+                            "{page.postMessage()}",
+                            undefined,
+                            undefined,
+                            "schema",
+                            "{temp.value}"
+                        ],
+                        "method":"postMessage",
+                        "redirection":"page::"
+                    }
+                ])
             );
             
             return children;
