@@ -172,7 +172,7 @@ xui.Class('App.SchemaSelector', 'xui.Module',{
                             "args":[
                                 "adjust",
                                 function(value){
-                                    return(value||"").replace(/[^w]/g,"").replace(/^[^w]+/g,"");
+                                    return(value||"").replace(/[^\w]/g,"").replace(/^[^a-zA-Z]+/g,"");
                                 }
                             ],
                             "method":"temp"
