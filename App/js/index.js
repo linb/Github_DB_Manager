@@ -156,16 +156,7 @@ xui.Class('App', 'xui.Module',{
                 ])
             );
             
-            host.xui_ui_layout3.append(
-                xui.create("xui.UI.Tabs")
-                .setHost(host,"xui_tabs_json")
-                .setLeft("0em")
-                .setTop("0em")
-                .setValue("a"),
-                "main"
-            );
-            
-            host.xui_ui_layout3.append(
+            host.xui_panel_left.append(
                 xui.create("xui.UI.List")
                 .setHost(host,"xui_list_tables")
                 .setDirtyMark(false)
@@ -229,8 +220,16 @@ xui.Class('App', 'xui.Module',{
                             }
                         ]
                     }
-                ]),
-                "before"
+                ])
+            );
+            
+            host.xui_ui_layout3.append(
+                xui.create("xui.UI.Tabs")
+                .setHost(host,"xui_tabs_json")
+                .setLeft("0em")
+                .setTop("0em")
+                .setValue("a"),
+                "main"
             );
             
             append(
