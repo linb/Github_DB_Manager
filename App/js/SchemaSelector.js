@@ -235,8 +235,25 @@ xui.Class('App.SchemaSelector', 'xui.Module',{
                         "conditions":[
                             {
                                 "left":"{temp.schema}",
-                                "symbol":"empty",
-                                "right":""
+                                "symbol":"=",
+                                "right":"{}"
+                            }
+                        ]
+                    },
+                    {
+                        "desc":"check value 22",
+                        "type":"other",
+                        "target":"msg",
+                        "args":[
+                            "No Schema",
+                            "Specify Schema please!"
+                        ],
+                        "method":"pop",
+                        "conditions":[
+                            {
+                                "left":"{temp.schema}",
+                                "symbol":"=",
+                                "right":"[]"
                             }
                         ]
                     },
