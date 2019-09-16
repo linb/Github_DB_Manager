@@ -23,6 +23,8 @@ xui.Class('App.SchemaSelector', 'xui.Module',{
             append(
                 xui.create("xui.APICaller")
                 .setHost(host,"api_1")
+                .setName("api_1")
+                .setResponseType("TEXT")
                 .setResponseCallback([
                     {
                         "type":"host",
@@ -30,7 +32,6 @@ xui.Class('App.SchemaSelector', 'xui.Module',{
                     }
                 ])
                 .setProxyType("AJAX")
-                .setResponseType("TEXT")
             );
             
             append(
@@ -73,7 +74,7 @@ xui.Class('App.SchemaSelector', 'xui.Module',{
                 .setHost(host,"xui_ui_panel13")
                 .setLeft("2.5em")
                 .setTop("6.666666666666667em")
-                .setCaption("Templates"),
+                .setCaption("Schema templates"),
                 "before"
             );
             
@@ -140,31 +141,101 @@ xui.Class('App.SchemaSelector', 'xui.Module',{
             host.xui_ui_dialog6.append(
                 xui.create("xui.UI.Block")
                 .setHost(host,"xui_ui_block19")
-                .setDock("bottom")
+                .setDock("top")
                 .setLeft("12.5em")
                 .setTop("20.833333333333332em")
-                .setHeight("2.4166666666666665em")
+                .setHeight("2.9166666666666665em")
                 .setBorderType("none")
             );
             
             host.xui_ui_block19.append(
+                xui.create("xui.UI.Input")
+                .setHost(host,"xui_ui_name")
+                .setRequired(true)
+                .setDirtyMark(false)
+                .setDock("width")
+                .setLeft("0.75em")
+                .setTop("0.5833333333333334em")
+                .setWidth("35.833333333333336em")
+                .setLabelSize("12em")
+                .setLabelCaption("Table/Object name")
+            );
+            
+            host.xui_ui_dialog6.append(
+                xui.create("xui.UI.Block")
+                .setHost(host,"xui_ui_block51")
+                .setDock("bottom")
+                .setLeft("13.333333333333334em")
+                .setTop("21.666666666666668em")
+                .setHeight("2.9166666666666665em")
+                .setBorderType("none")
+            );
+            
+            host.xui_ui_block51.append(
                 xui.create("xui.UI.HTMLButton")
-                .setHost(host,"xui_ui_htmlbutton3")
+                .setHost(host,"xui_ui_htmlbutton11")
                 .setLeft("3.0833333333333335em")
                 .setTop("0.5833333333333334em")
                 .setWidth("6em")
                 .setCaption("OK")
                 .onClick([
                     {
-                        "desc":"get value",
+                        "desc":"get value 1",
                         "type":"other",
                         "target":"var",
                         "args":[
-                            "value",
+                            "name",
+                            "{page.xui_ui_name.getValue()}"
+                        ],
+                        "method":"temp",
+                        "event":1
+                    },
+                    {
+                        "desc":"get value 2",
+                        "type":"other",
+                        "target":"var",
+                        "args":[
+                            "schema",
                             "{page.xui_module_jsoneditor3.getValue()}"
                         ],
                         "method":"temp",
                         "event":1
+                    },
+                    {
+                        "desc":"check value 1",
+                        "type":"other",
+                        "target":"msg",
+                        "args":[
+                            "No name",
+                            "Specify name please!"
+                        ],
+                        "method":"pop",
+                        "conditions":[
+                            {
+                                "left":"{temp.name}",
+                                "symbol":"empty",
+                                "right":""
+                            }
+                        ],
+                        "return":false
+                    },
+                    {
+                        "desc":"check value 2",
+                        "type":"other",
+                        "target":"msg",
+                        "args":[
+                            "No schema",
+                            "Specify Schema please!"
+                        ],
+                        "method":"pop",
+                        "conditions":[
+                            {
+                                "left":"{temp.schema}",
+                                "symbol":"empty",
+                                "right":""
+                            }
+                        ],
+                        "return":false
                     },
                     {
                         "desc":"post message",
@@ -175,7 +246,9 @@ xui.Class('App.SchemaSelector', 'xui.Module',{
                             undefined,
                             undefined,
                             "schema",
-                            "{temp.value}"
+                            "{page}",
+                            "{temp.name}",
+                            "{temp.schema}"
                         ],
                         "method":"postMessage",
                         "redirection":"page::"
