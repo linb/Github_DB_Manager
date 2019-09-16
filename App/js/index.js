@@ -849,15 +849,15 @@ xui.Class('App', 'xui.Module',{
                         undefined,
                         "createtable",
                         "{global.repoName}",
-                        "{args[2]}",
-                        "{args[3]}"
+                        "{args[3]}",
+                        "{args[4]}"
                     ],
                     "method":"$Functions.createObject",
                     "conditions":[
                         {
                             "left":"{args[1]}",
                             "symbol":"=",
-                            "right":"schema"
+                            "right":"createObject"
                         }
                     ],
                     "redirection":"other:callback:call"
