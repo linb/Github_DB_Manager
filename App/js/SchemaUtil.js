@@ -24,8 +24,9 @@ xui.Class('App.SchemaUtil', 'xui.Module',{
                 xui.create("xui.UI.TreeGrid")
                 .setHost(host,"xui_ui_treegrid32")
                 .setDirtyMark(false)
-                .setLeft("0em")
-                .setTop("0em")
+                .setDock("none")
+                .setLeft("15.833333333333334em")
+                .setTop("6.666666666666667em")
                 .setRowNumbered(true)
                 .setHeader([
                     {
@@ -34,10 +35,10 @@ xui.Class('App.SchemaUtil', 'xui.Module',{
                         "type":"input",
                         "width":"8em",
                         "_cells":{ },
-                        "_serialId":"-h_d",
+                        "_serialId":"-h_a",
                         "_colWidth":"8em",
                         "_cellWidth":"8em",
-                        "_hcellheight":"1.8333333333333333em",
+                        "_hcellheight":"2em",
                         "_region":2
                     },
                     {
@@ -46,10 +47,10 @@ xui.Class('App.SchemaUtil', 'xui.Module',{
                         "type":"input",
                         "width":"8em",
                         "_cells":{ },
-                        "_serialId":"-h_e",
+                        "_serialId":"-h_b",
                         "_colWidth":"8em",
                         "_cellWidth":"8em",
-                        "_hcellheight":"1.8333333333333333em",
+                        "_hcellheight":"2em",
                         "_region":2
                     },
                     {
@@ -62,13 +63,22 @@ xui.Class('App.SchemaUtil', 'xui.Module',{
                         "min":0,
                         "max":200,
                         "_cells":{ },
-                        "_serialId":"-h_f",
+                        "_serialId":"-h_c",
                         "_colWidth":"8em",
                         "_cellWidth":"8em",
-                        "_hcellheight":"1.8333333333333333em",
+                        "_hcellheight":"2em",
                         "_region":2
                     }
                 ])
+            );
+            
+            append(
+                xui.create("xui.UI.Label")
+                .setHost(host,"xui_ui_label3")
+                .setLeft("7.5em")
+                .setTop("2.5em")
+                .setWidth("28.916666666666668em")
+                .setCaption("Useless, except for build table/object schema json")
             );
             
             return children;
