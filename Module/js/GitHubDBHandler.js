@@ -170,8 +170,14 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                 if(false !== xui.tryF(onSuccess, args))
                     api.fireEvent("onObjectsList", args);                
             }).catch(function(e){
-                if(false!==xui.tryF(onFail,[e] )){
-                    api.fireEvent("onError", [requestId, "listObjects", xui.getErrMsg(e)]);
+                if(e.status == 404){
+                    var args = [requestId, []];
+                    if(false !== xui.tryF(onSuccess, args))
+                        api.fireEvent("onObjectsList", args);
+                }else {
+                    if(false!==xui.tryF(onFail,[e] )){
+                        api.fireEvent("onError", [requestId, "listObjects", xui.getErrMsg(e)]);
+                    }
                 }
             });
         },
