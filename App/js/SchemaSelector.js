@@ -37,9 +37,9 @@ xui.Class('App.SchemaSelector', 'xui.Module',{
             append(
                 xui.create("xui.UI.Dialog")
                 .setHost(host,"xui_ui_dialog6")
-                .setLeft("11.666666666666666em")
+                .setLeft("3.3333333333333335em")
                 .setTop("2.5em")
-                .setWidth("33.333333333333336em")
+                .setWidth("57.5em")
                 .setCaption("Select a schema")
                 .setMinBtn(false)
                 .setModal(true)
@@ -120,7 +120,6 @@ xui.Class('App.SchemaSelector', 'xui.Module',{
             host.xui_ui_layout13.append(
                 xui.create("xui.UI.Input")
                 .setHost(host,"xui_ui_input1")
-                .setReadonly(true)
                 .setDirtyMark(false)
                 .setDock("fill")
                 .setLeft("5.833333333333333em")
