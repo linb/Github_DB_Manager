@@ -1169,8 +1169,8 @@ xui.Class('App', 'xui.Module',{
                         "updateItem",
                         "{args[2]}",
                         "{args[3]}",
-                        "{args[5]}",
-                        "{args[4]}"
+                        "{args[4]}",
+                        ""
                     ],
                     "method":"$Functions.updateItem",
                     "conditions":[
