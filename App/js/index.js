@@ -630,8 +630,8 @@ xui.Class('App', 'xui.Module',{
                             "type":"other",
                             "target":"msg",
                             "args":[
-                                "Error at {args[0]} - {args[1]}",
-                                "{args[1]} : {args[2]}"
+                                "Error at {args[1]} - {args[3]}",
+                                "{args[2]}"
                             ],
                             "method":"alert",
                             "onOK":2
