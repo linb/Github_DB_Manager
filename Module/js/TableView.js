@@ -37,6 +37,7 @@ xui.Class('Module.TableView', 'xui.Module',{
                         "tag":"row"
                     }
                 ])
+                .setHotRowMode("show")
                 .onCmd([
                     {
                         "desc":"del",
