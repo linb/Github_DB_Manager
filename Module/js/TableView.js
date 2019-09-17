@@ -31,8 +31,23 @@ xui.Class('Module.TableView', 'xui.Module',{
                 "desc":"",
                 "params":[
                     {
-                        "id":"result",
+                        "id":"req",
                         "type":"String",
+                        "desc":""
+                    },
+                    {
+                        "id":"obj",
+                        "type":"String",
+                        "desc":""
+                    },
+                    {
+                        "id":"items",
+                        "type":"Array",
+                        "desc":""
+                    },
+                    {
+                        "id":"schema",
+                        "type":"Hash",
                         "desc":""
                     }
                 ],
