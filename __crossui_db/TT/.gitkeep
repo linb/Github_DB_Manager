@@ -1,0 +1,1 @@
+{"prop":[{"id":"fname","caption":"First Name","type":"input","width":"8em"},{"id":"lname","caption":"Last Name","type":"input","width":"8em"},{"id":"age","caption":"age","type":"number","width":"8em","precision":0,"increment":10,"min":0,"max":200}]}
