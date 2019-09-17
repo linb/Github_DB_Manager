@@ -354,7 +354,8 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                 sort:"indexed",
                 order:order || "desc",
                 page:cur_page|| 1,
-                per_page:page_size || 20
+                per_page:page_size || 20,
+                rand:xui.rand()
             }).then( function(rst){
                 var promises = [],schema={};
                 if(withSchema){
