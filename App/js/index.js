@@ -292,7 +292,8 @@ xui.Class('App', 'xui.Module',{
                             "target":"{temp.newbies.clfjj5fi}",
                             "args":[
                                 {
-                                    "path":"{args[1].id}"
+                                    "path":"{args[1].id}",
+                                    "page":1
                                 }
                             ],
                             "method":"setProperties"
