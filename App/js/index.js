@@ -1177,7 +1177,7 @@ xui.Class('App', 'xui.Module',{
                         {
                             "left":"{args[1]}",
                             "symbol":"=",
-                            "right":"updateitem"
+                            "right":"updateItem"
                         }
                     ],
                     "redirection":"other:callback:call"
