@@ -373,6 +373,10 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                 var items = [], item,fid;
                 rst.data.items.forEach( function(v, i){
                     fid=v.name.replace(/\.json$/,"");
+                    item = {
+                        // these two keys are reserved
+                        _id:fid
+                    };
                     var p=api.readItem(requestId+":"+fid, repo, objectName, fid, function(req, objectName, json, itemId){
                         xui.merge(item, json, 'without');
                         return false;
@@ -381,10 +385,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                         return false;
                     });
                     if(p){
-                        items.push(item = {
-                            // these two keys are reserved
-                            _id:fid
-                        });
+                        items.push(item);
                         promises.push(p);
                     }
                 });
