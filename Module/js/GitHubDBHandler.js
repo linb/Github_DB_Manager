@@ -498,7 +498,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                 message:"Created by CrossUI GitHub DB",
                 content: Base64.encode( content||"" )
             }).then(function(rsp){
-                var info = rsp.data;
+                var info = rsp.data.content;
                 var args = [requestId, objectName, item,  itemId, info.sha, {
                     id: info.path,
                     path: info.path,
