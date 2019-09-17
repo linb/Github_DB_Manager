@@ -1157,6 +1157,30 @@ xui.Class('App', 'xui.Module',{
                         }
                     ],
                     "redirection":"other:callback:call"
+                },
+                {
+                    "desc":"updateItem",
+                    "type":"module",
+                    "target":"module_githubdb",
+                    "args":[
+                        "{page.module_githubdb.updateItem}",
+                        undefined,
+                        undefined,
+                        "updateItem",
+                        "{args[2]}",
+                        "{args[3]}",
+                        "{args[5]}",
+                        "{args[4]}"
+                    ],
+                    "method":"$Functions.updateItem",
+                    "conditions":[
+                        {
+                            "left":"{args[1]}",
+                            "symbol":"=",
+                            "right":"updateItem"
+                        }
+                    ],
+                    "redirection":"other:callback:call"
                 }
             ]
         },
