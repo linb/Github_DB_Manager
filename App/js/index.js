@@ -219,6 +219,118 @@ xui.Class('App', 'xui.Module',{
                         ]
                     }
                 ])
+                .onItemSelected({
+                    "newbies":{
+                        "clfjj5fi":"Module.TableView"
+                    },
+                    "actions":[
+                        {
+                            "desc":"exists?",
+                            "type":"control",
+                            "target":"xui_tabs_json",
+                            "args":[
+                                "{args[1].id}",
+                                "{args[1].id}"
+                            ],
+                            "method":"setValue",
+                            "conditions":[
+                                {
+                                    "left":"{page.xui_tabs_json.getItems()}",
+                                    "symbol":"objarrhaskey",
+                                    "right":"{args[1].id}"
+                                }
+                            ],
+                            "return":false,
+                            "event":2
+                        },
+                        {
+                            "desc":"pick item",
+                            "type":"other",
+                            "target":"var",
+                            "args":[
+                                "item",
+                                "{args[1]}"
+                            ],
+                            "method":"temp",
+                            "event":2
+                        },
+                        {
+                            "desc":"adjust item",
+                            "type":"other",
+                            "target":"var",
+                            "args":[
+                                "item.closeBtn",
+                                "{true}"
+                            ],
+                            "method":"temp",
+                            "event":2
+                        },
+                        {
+                            "desc":"add tab",
+                            "type":"control",
+                            "target":"xui_tabs_json",
+                            "args":[
+                                "{temp.item}",
+                                true,
+                                true
+                            ],
+                            "method":"insertItems",
+                            "event":2
+                        },
+                        {
+                            "desc":"active tab",
+                            "type":"control",
+                            "target":"xui_tabs_json",
+                            "args":[
+                                "{args[1].id}"
+                            ],
+                            "method":"fireItemClickEvent"
+                        },
+                        {
+                            "desc":"crete inputmodule",
+                            "type":"module",
+                            "target":"{temp.newbies.clfjj5fi}",
+                            "args":[
+                                {
+                                    "path":"{args[1].id}" 
+                                }
+                            ],
+                            "method":"setProperties"
+                        },
+                        {
+                            "desc":"show mdl",
+                            "type":"module",
+                            "target":"{temp.newbies.clfjj5fi}",
+                            "args":[
+                                undefined,
+                                "{page.xui_tabs_json}",
+                                "{args[1].id}"
+                            ],
+                            "method":"show"
+                        },
+                        {
+                            "desc":"to read file",
+                            "type":"module",
+                            "target":"module_githubdb",
+                            "args":[
+                                "{page.module_githubdb.listItems}",
+                                undefined,
+                                undefined,
+                                "listItems",
+                                "{global.repoName}",
+                                "{args[1].id}",
+                                "{true}",
+                                1,
+                                "{global.page_size}",
+                                "",
+                                "",
+                                "{temp.newbies.clfjj5fi.functions.setResult}"
+                            ],
+                            "method":"$Functions.readFile",
+                            "redirection":"other:callback:call"
+                        }
+                    ]
+                })
             );
             
             host.xui_ui_layout3.append(
