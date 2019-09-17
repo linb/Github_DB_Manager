@@ -44,7 +44,7 @@ xui.Class('Module.TableView', 'xui.Module',{
                         {
                             "desc":"addItem",
                             "type":"page",
-                            "target":"Module.TableView",
+                            "target":"App",
                             "args":[
                                 "{page.postMessage()}",
                                 undefined,
