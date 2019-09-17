@@ -27,6 +27,32 @@ xui.Class('Module.TableView', 'xui.Module',{
                 .setLeft("0em")
                 .setTop("0em")
                 .setRowNumbered(true)
+                .setTagCmds([
+                    {
+                        "id":"del",
+                        "type":"text",
+                        "location":"left",
+                        "itemClass":"xuicon xui-uicmd-close",
+                        "tag":"row"
+                    }
+                ])
+                .onCmd([
+                    {
+                        "desc":"del",
+                        "type":"control",
+                        "target":"xui_ui_treegrid21",
+                        "args":[ ],
+                        "method":"removeRows",
+                        "conditions":[
+                            {
+                                "left":"{args[2]}",
+                                "symbol":"=",
+                                "right":"del"
+                            }
+                        ],
+                        "event":3
+                    }
+                ])
             );
             
             return children;
