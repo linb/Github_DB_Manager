@@ -121,7 +121,8 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                 sort:sort||"updated",
                 order:order || "desc",
                 page:cur_page|| 1,
-                per_page:page_size || 20
+                per_page:page_size || 20,
+                rand:xui.rand()
             }).then( function(rst){
                 var repos = [];
                 rst.data.items.forEach( function(v, i){
@@ -170,7 +171,8 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
             clientWithAuth.repos.getContents({
                 owner:api.getGithubUser(),
                 repo:repo,
-                path: api.DB_ROOT_PATH
+                path: api.DB_ROOT_PATH,
+                rand:xui.rand()
             }).then(function(rst){
                 var objs=[];
                 rst.data.forEach(function(v,i){
@@ -206,7 +208,8 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
             clientWithAuth.repos.getContents({
                 owner:api.getGithubUser(),
                 repo:repo,
-                path: api.DB_ROOT_PATH+"/"+objectName
+                path: api.DB_ROOT_PATH+"/"+objectName,
+                rand:xui.rand()
             }).then(function(rst){
                 if(xui.isArr(rst.data)){
                     xui.tryF(onSuccess, [requestId, objectName]);
@@ -414,7 +417,8 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
             clientWithAuth.repos.getContents({
                 owner:api.getGithubUser(),
                 repo:repo,
-                path: api.DB_ROOT_PATH+"/"+objectName+"/"+itemId + ".json"
+                path: api.DB_ROOT_PATH+"/"+objectName+"/"+itemId + ".json",
+                rand:xui.rand()
             }).then(function(rst){
                 if(rst.type=="file")
                     xui.tryF(onSuccess, [requestId, rst.sha, objectName, itemId]);
@@ -442,7 +446,8 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
             return clientWithAuth.repos.getContents({
                 owner:api.getGithubUser(),
                 repo:repo,
-                path: api.DB_ROOT_PATH+"/"+objectName+"/"+(itemId==api.OBJ_SCHEMA_FILE?itemId:(itemId + ".json"))
+                path: api.DB_ROOT_PATH+"/"+objectName+"/"+(itemId==api.OBJ_SCHEMA_FILE?itemId:(itemId + ".json")),
+                rand:xui.rand()
             }).then(function(rst){
                 // folder
                 if(rst.data[0]){
