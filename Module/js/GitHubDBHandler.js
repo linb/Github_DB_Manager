@@ -344,7 +344,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
 
         // for item
         listItems : function(requestId, repo, objectName, withSchema, cur_page, page_size, wordIn, order, onSuccess, onFail){
-            var api=this,
+            var api=this, user = api.getGithubUser(),
                 clientWithAuth = api.getGithubClient();
             if(false===api.fireEvent("beforeDBAction", ["listItems",requestId,arguments])){
                 return;
@@ -352,7 +352,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
             // we have to add a search word
             wordIn = wordIn || "crossuigithubdbrecordmarkateachrecordverytail";
             clientWithAuth.search.code({
-                q: wordIn + "in:file repo:"+ns.getGithubUser()+"/"+repo+" path:"+api.DB_ROOT_PATH+"/"+objectName+"/ extension:json",
+                q: wordIn + "in:file repo:"+user+"/"+repo+" path:"+api.DB_ROOT_PATH+"/"+objectName+"/ extension:json",
                 sort:"indexed",
                 order:order || "desc",
                 page:cur_page|| 1,
