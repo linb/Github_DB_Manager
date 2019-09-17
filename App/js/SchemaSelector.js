@@ -230,7 +230,7 @@ xui.Class('App.SchemaSelector', 'xui.Module',{
                         "args":[
                             "{page.xui_module_jsoneditor3.getValue}",
                             "temp",
-                            "schema.prop",
+                            "schema",
                             "{true}"
                         ],
                         "method":"$Functions.getValue",
@@ -316,6 +316,17 @@ xui.Class('App.SchemaSelector', 'xui.Module',{
                 ],
                 "actions":[
                     {
+                        "desc":"prep",
+                        "type":"other",
+                        "target":"var",
+                        "args":[
+                            "json.prop",
+                            "{args[0]}"
+                        ],
+                        "method":"temp",
+                        "adjust":"unserialize"
+                    },
+                    {
                         "desc":"set text",
                         "type":"module",
                         "target":"xui_module_jsoneditor3",
@@ -323,7 +334,7 @@ xui.Class('App.SchemaSelector', 'xui.Module',{
                             "{page.xui_module_jsoneditor3.setValue}",
                             undefined,
                             undefined,
-                            "{args[0]}"
+                            "{temp.json}"
                         ],
                         "method":"$Functions.setValue",
                         "redirection":"other:callback:call"
