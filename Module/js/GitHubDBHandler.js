@@ -156,7 +156,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
             clientWithAuth.repos.getContents({
                 owner:api.getGithubUser(),
                 repo:repo,
-                path: api.DB_ROOT_PATH
+                path: api.DB_ROOT_PATH + "?" + xui.rand(head, tail)
             }).then(function(rst){
                 var objs=[];
                 rst.data.forEach(function(v,i){
