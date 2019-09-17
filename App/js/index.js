@@ -582,6 +582,15 @@ xui.Class('App', 'xui.Module',{
                             ],
                             "method":"alert",
                             "onOK":2
+                        },
+                        {
+                            "desc":"log",
+                            "type":"other",
+                            "target":"msg",
+                            "args":[
+                                "{args}"
+                            ],
+                            "method":"log"
                         }
                     ],
                     "onGithubLogin":[
