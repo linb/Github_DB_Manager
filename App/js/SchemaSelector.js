@@ -41,7 +41,7 @@ xui.Class('App.SchemaSelector', 'xui.Module',{
                 .setTop("1.6666666666666667em")
                 .setWidth("57.5em")
                 .setHeight("32.5em")
-                .setCaption("Select a schema")
+                .setCaption("Specify a table/object name and schema")
                 .setMinBtn(false)
                 .setModal(true)
             );
