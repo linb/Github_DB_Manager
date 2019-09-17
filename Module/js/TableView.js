@@ -55,6 +55,74 @@ xui.Class('Module.TableView', 'xui.Module',{
                 ])
             );
             
+            append(
+                xui.create("xui.UI.Block")
+                .setHost(host,"xui_ui_block38")
+                .setDock("bottom")
+                .setLeft("18.333333333333332em")
+                .setTop("15.833333333333334em")
+                .setHeight("3.3333333333333335em")
+            );
+            
+            host.xui_ui_block38.append(
+                xui.create("xui.UI.PageBar")
+                .setHost(host,"xui_ui_pagebar")
+                .setLeft("0.8333333333333334em")
+                .setTop("0.8333333333333334em")
+                .setCaption("Page")
+            );
+            
+            append(
+                xui.create("xui.UI.Block")
+                .setHost(host,"xui_ui_block41")
+                .setDock("top")
+                .setLeft("19.166666666666668em")
+                .setTop("16.666666666666668em")
+                .setHeight("3.3333333333333335em")
+            );
+            
+            host.xui_ui_block41.append(
+                xui.create("xui.UI.ComboInput")
+                .setHost(host,"xui_ui_ci_search")
+                .setDirtyMark(false)
+                .setLeft("2.5em")
+                .setTop("0.8333333333333334em")
+                .setWidth("24.583333333333332em")
+                .setLabelSize("8em")
+                .setLabelCaption("Search")
+                .setCommandBtn("delete")
+                .setType("input")
+                .setImageClass("xui-icon-search")
+            );
+            
+            host.xui_ui_block41.append(
+                xui.create("xui.UI.HTMLButton")
+                .setHost(host,"xui_ui_btn_refresh")
+                .setLeft("30em")
+                .setTop("0.8333333333333334em")
+                .setWidth("6.666666666666667em")
+                .setCaption("Refresh")
+                .onClick([
+                    {
+                        "desc":"send msg",
+                        "type":"page",
+                        "target":"App",
+                        "args":[
+                            "{page.postMessage()}",
+                            undefined,
+                            undefined,
+                            "refreshItemList",
+                            "{page.properties.path}",
+                            "{page.properties.page}",
+                            "{page.functions.setResult}"
+                        ],
+                        "method":"postMessage",
+                        "redirection":"page::",
+                        "event":1
+                    }
+                ])
+            );
+            
             return children;
             // ]]Code created by CrossUI RAD Studio
         },
