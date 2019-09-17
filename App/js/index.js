@@ -292,7 +292,7 @@ xui.Class('App', 'xui.Module',{
                             "target":"{temp.newbies.clfjj5fi}",
                             "args":[
                                 {
-                                    "path":"{args[1].id}" 
+                                    "path":"{args[1].id}"
                                 }
                             ],
                             "method":"setProperties"
@@ -309,7 +309,7 @@ xui.Class('App', 'xui.Module',{
                             "method":"show"
                         },
                         {
-                            "desc":"to read file",
+                            "desc":"list objects",
                             "type":"module",
                             "target":"module_githubdb",
                             "args":[
@@ -320,13 +320,13 @@ xui.Class('App', 'xui.Module',{
                                 "{global.repoName}",
                                 "{args[1].id}",
                                 "{true}",
-                                1,
+                                "1",
                                 "{global.page_size}",
-                                "",
-                                "","",
+                                undefined,
+                                undefined,
                                 "{temp.newbies.clfjj5fi.functions.setResult}"
                             ],
-                            "method":"$Functions.readFile",
+                            "method":"$Functions.listItems",
                             "redirection":"other:callback:call"
                         }
                     ]
