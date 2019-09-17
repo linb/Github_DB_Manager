@@ -573,13 +573,6 @@ xui.Class('App', 'xui.Module',{
                 .setEvents({
                     "onError":[
                         {
-                            "desc":"freeUI",
-                            "type":"other",
-                            "target":"msg",
-                            "args":[ ],
-                            "method":"free"
-                        },
-                        {
                             "desc":"log",
                             "type":"other",
                             "target":"msg",
@@ -1128,6 +1121,13 @@ xui.Class('App', 'xui.Module',{
                         ],
                         "method":"$Functions.deleteObject",
                         "redirection":"other:callback:call"
+                    },
+                    {
+                        "desc":"busyUI",
+                        "type":"other",
+                        "target":"msg",
+                        "args":[ ],
+                        "method":"busy"
                     }
                 ]
             }
