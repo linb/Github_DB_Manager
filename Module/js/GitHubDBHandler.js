@@ -194,17 +194,17 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                 }else if(rst.data.type){
                     var e1= new Error("Not a dir");
                     if(false!==xui.tryF(onFail,[e1] )){
-                        api.fireEvent("onError", ["objectExist",requestId, xui.getErrMsg(e1)]);
+                        api.fireEvent("onError", ["objectExist",requestId, xui.getErrMsg(e1), e1]);
                     }
                 }else{
                     var e2 = new Error("Doesn't exist");
                     if(false!==xui.tryF(onFail,[e2] )){
-                        api.fireEvent("onError", ["objectExist",requestId, xui.getErrMsg(e2),'none']);
+                        api.fireEvent("onError", ["objectExist",requestId, xui.getErrMsg(e2),e2, 'none']);
                     }
                 }
             }).catch(function(e){
                 if(false!==xui.tryF(onFail,[e] )){
-                    api.fireEvent("onError", ["objectExist",requestId, xui.getErrMsg(e),e,'file']);
+                    api.fireEvent("onError", ["objectExist",requestId, xui.getErrMsg(e), e, 'file']);
                 }
             });
         },
@@ -216,11 +216,11 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                 if(false!==xui.tryF(onFail,[e] )){
                     api.fireEvent("onError", ["createObject",requestId, xui.getErrMsg(e),e]);
                 }
-            }, function(a,b,c,type){   
+            }, function(a,b,c,d,type){   
                 if(type=="file"){
                     var e2  = new Error("The ''"+objectName+"'' is a file in repo path!");
                     if(false!==xui.tryF(onFail,[e2] )){
-                        api.fireEvent("onError", ["createObject",requestId, xui.getErrMsg(e2)]);
+                        api.fireEvent("onError", ["createObject",requestId, xui.getErrMsg(e2), e2]);
                     }
                 }else{
                     clientWithAuth.repos.createOrUpdateFile({
@@ -372,9 +372,9 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                 if(rst.type=="file")
                     xui.tryF(onSuccess, [requestId, rst.sha, objectName, itemId]);
                 else{
-                    var e="Not an item file";
-                    if(false!==xui.tryF(onFail,[new Error(e)] ))
-                        api.fireEvent("onError", ["itemExist",requestId, e]);
+                    var e=new Error("Not an item file");
+                    if(false!==xui.tryF(onFail,[e] ))
+                        api.fireEvent("onError", ["itemExist",requestId, xui.getErrMsg(e),e]);
                 }
             }).catch(function(e){
                 if(false!==xui.tryF(onFail,[e] )){
@@ -476,8 +476,9 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                     }
                 });
             },function(req, msg){
-                if(false!==xui.tryF(onFail,[new Error(msg)] )){
-                    api.fireEvent("onError", ["updateItem",requestId, msg]);
+                var e =  new Error(msg);
+                if(false!==xui.tryF(onFail,[e] )){
+                    api.fireEvent("onError", ["updateItem",requestId, xui.getErrMsg(e),e]);
                 }
             });
         },
@@ -502,8 +503,9 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                     }
                 });
             },function(req, msg){
-                if(false!==xui.tryF(onFail,[new Error(msg)] )){
-                    api.fireEvent("onError", ["deleteItem",requestId, msg]);
+                var e=new Error(msg);
+                if(false!==xui.tryF(onFail,[e] )){
+                    api.fireEvent("onError", ["deleteItem",requestId, xui.getErrMsg(e),e]);
                 }
             });
         },
