@@ -63,10 +63,19 @@ xui.Class('Module.TableView', 'xui.Module',{
                 .onCmd([
                     {
                         "desc":"del",
-                        "type":"control",
-                        "target":"xui_ui_treegrid21",
-                        "args":[ ],
-                        "method":"removeRows",
+                        "type":"page",
+                        "target":"App",
+                        "args":[
+                            "{page.postMessage()}",
+                            undefined,
+                            undefined,
+                            "delItem",
+                            "{global.repoName}",
+                            "{page.properties.path}",
+                            "{args[1].id}",
+                            "{page.functions.delItem}"
+                        ],
+                        "method":"postMessage",
                         "conditions":[
                             {
                                 "left":"{args[2]}",
@@ -74,7 +83,8 @@ xui.Class('Module.TableView', 'xui.Module',{
                                 "right":"del"
                             }
                         ],
-                        "event":3
+                        "event":3,
+                        "redirection":"page::"
                     }
                 ])
             );
@@ -366,6 +376,37 @@ xui.Class('Module.TableView', 'xui.Module',{
                             false
                         ],
                         "method":"insertMapRows"
+                    }
+                ]
+            },
+            "delItem":{
+                "desc":"",
+                "params":[
+                    {
+                        "id":"a",
+                        "type":"String",
+                        "desc":""
+                    },
+                    {
+                        "id":"b",
+                        "type":"String",
+                        "desc":""
+                    },
+                    {
+                        "id":"itemId",
+                        "type":"String",
+                        "desc":""
+                    }
+                ],
+                "actions":[
+                    {
+                        "desc":"delItem",
+                        "type":"control",
+                        "target":"xui_ui_treegrid21",
+                        "args":[
+                            "{args[2]}"
+                        ],
+                        "method":"removeRows"
                     }
                 ]
             }
