@@ -573,17 +573,6 @@ xui.Class('App', 'xui.Module',{
                 .setEvents({
                     "onError":[
                         {
-                            "desc":"show error",
-                            "type":"other",
-                            "target":"msg",
-                            "args":[
-                                "Error",
-                                "{args[0]} - {args[1]} : {args[2]}"
-                            ],
-                            "method":"alert",
-                            "onOK":2
-                        },
-                        {
                             "desc":"log",
                             "type":"other",
                             "target":"msg",
@@ -606,8 +595,25 @@ xui.Class('App', 'xui.Module',{
                                     "left":"{args[1]}",
                                     "symbol":"=",
                                     "right":"delObj"
+                                },
+                                {
+                                    "left":"{args[2]}",
+                                    "symbol":"include",
+                                    "right":"Update is not a fast forward"
                                 }
-                            ]
+                            ],
+                            "return":false
+                        },
+                        {
+                            "desc":"show error",
+                            "type":"other",
+                            "target":"msg",
+                            "args":[
+                                "Error",
+                                "{args[0]} - {args[1]} : {args[2]}"
+                            ],
+                            "method":"alert",
+                            "onOK":2
                         }
                     ],
                     "onGithubLogin":[
