@@ -507,7 +507,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                     type: info.type,
                     sha: info.sha,
                     tagVar:info
-                }, path.replace(/[^\/]*$/,'').replace(/\/$/,'')];
+                }, info.path.replace(/[^\/]*$/,'').replace(/\/$/,'')];
                 if(false !== xui.tryF(onSuccess, args))
                     api.fireEvent("onItemCreate", args);      
                 api.fireEvent("afterDBAction", ["createItem",requestId]);
