@@ -215,19 +215,19 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                     xui.tryF(onSuccess, [requestId, objectName]);
                 }else if(rst.data.type){
                     var e1= new Error("Not a dir");
-                    if(false!==xui.tryF(onFail,[e1] )){
+                    if(false!==xui.tryF(onFail,[e1,"notdir"] )){
                         api.fireEvent("onError", ["objectExist",requestId, xui.getErrMsg(e1), e1]);
                     }
                 }else{
                     var e2 = new Error("Doesn't exist");
-                    if(false!==xui.tryF(onFail,[e2] )){
-                        api.fireEvent("onError", ["objectExist",requestId, xui.getErrMsg(e2),e2, 'none']);
+                    if(false!==xui.tryF(onFail,[e2,"notexist"] )){
+                        api.fireEvent("onError", ["objectExist",requestId, xui.getErrMsg(e2),e2]);
                     }
                 }
                 api.fireEvent("afterDBAction", ["objectExist",requestId]);
             }).catch(function(e){
                 if(false!==xui.tryF(onFail,[e] )){
-                    api.fireEvent("onError", ["objectExist",requestId, xui.getErrMsg(e), e, 'file']);
+                    api.fireEvent("onError", ["objectExist",requestId, xui.getErrMsg(e), e]);
                 }
                 api.fireEvent("afterDBAction", ["objectExist",requestId]);
             });
@@ -244,8 +244,8 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                     api.fireEvent("onError", ["createObject",requestId, xui.getErrMsg(e),e]);
                 }
                 api.fireEvent("afterDBAction", ["createObject",requestId]);
-            }, function(a,b,c,d,type){   
-                if(type=="file"){
+            }, function(e,type){   
+                if(type=="notdir"){
                     var e2  = new Error("The ''"+objectName+"'' is a file in repo path!");
                     if(false!==xui.tryF(onFail,[e2] )){
                         api.fireEvent("onError", ["createObject",requestId, xui.getErrMsg(e2), e2]);
@@ -422,7 +422,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                 path: api.DB_ROOT_PATH+"/"+objectName+"/"+itemId + ".json",
                 rand:xui.rand()
             }).then(function(rst){
-                if(rst.type=="file")
+                if(rst.data.type=="file")
                     xui.tryF(onSuccess, [requestId, rst.sha, objectName, itemId]);
                 else{
                     var e=new Error("Not an item file");
