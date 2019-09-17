@@ -345,6 +345,15 @@ xui.Class('Module.TableView', 'xui.Module',{
                 ],
                 "actions":[
                     {
+                        "desc":"log",
+                        "type":"other",
+                        "target":"msg",
+                        "args":[
+                            "{args}"
+                        ],
+                        "method":"log"
+                    },
+                    {
                         "desc":"temp",
                         "type":"other",
                         "target":"var",
