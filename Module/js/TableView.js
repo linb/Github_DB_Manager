@@ -211,17 +211,38 @@ xui.Class('Module.TableView', 'xui.Module',{
                         "method":"log"
                     },
                     {
-                        "desc":"set grid",
+                        "desc":"set grid columns",
                         "type":"control",
                         "target":"xui_ui_treegrid21",
                         "args":[
                             { },
                             {
                                 "header":"{args[3].prop}",
-                                "rawData":"{args[2]}"
+                                "rawData":"{args[3].prop}"
                             }
                         ],
-                        "method":"setProperties"
+                        "method":"setProperties",
+                        "conditions":[
+                            {
+                                "left":"{args[3]}",
+                                "symbol":"non-empty",
+                                "right":""
+                            }
+                        ]
+                    },
+                    {
+                        "desc":"set grid rows",
+                        "type":"control",
+                        "target":"xui_ui_treegrid21",
+                        "args":[
+                            "{page.xui_ui_treegrid21.setRawData()}",
+                            undefined,
+                            undefined,
+                            "{args[2]}"
+                        ],
+                        "method":"setRawData",
+                        "return":false,
+                        "redirection":"other:callback:call"
                     },
                     {
                         "desc":"set page size",
