@@ -372,10 +372,9 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                         }) ;
                     if(p) promises.push(p );
                 }
-                var items = [], item,fid;
+                var items = [], pool={},item,fid;
                 rst.data.items.forEach( function(v, i){
                     fid=v.name.replace(/\.json$/,"");
-                    var pool={};
                     var p=api.readItem(requestId+":"+fid, repo, objectName, fid, function(req, objectName, json, itemId){
                         xui.merge( pool[fid], json, 'without');
                         return false;
