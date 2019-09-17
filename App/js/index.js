@@ -322,8 +322,8 @@ xui.Class('App', 'xui.Module',{
                                 "{true}",
                                 1,
                                 "{global.page_size}",
-                                "",
-                                "",
+                                "a",
+                                "","",
                                 "{temp.newbies.clfjj5fi.functions.setResult}"
                             ],
                             "method":"$Functions.readFile",
