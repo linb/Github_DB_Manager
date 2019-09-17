@@ -794,9 +794,18 @@ xui.Class('App', 'xui.Module',{
                     ],
                     "onObjectDelete":[
                         {
-                            "desc":"remove",
+                            "desc":"remove from list",
                             "type":"control",
                             "target":"xui_list_tables",
+                            "args":[
+                                "{args[1]}"
+                            ],
+                            "method":"removeItems"
+                        },
+                        {
+                            "desc":"remove from tabs",
+                            "type":"control",
+                            "target":"xui_tabs_json",
                             "args":[
                                 "{args[1]}"
                             ],
