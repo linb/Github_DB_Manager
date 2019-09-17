@@ -376,7 +376,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                 rst.data.items.forEach( function(v, i){
                     fid=v.name.replace(/\.json$/,"");
                     var p=api.readItem(requestId+":"+fid, repo, objectName, fid, function(req, objectName, json, itemId){
-                        xui.merge( pool[fid], json, 'without');
+                        xui.merge( pool[itemId], json, 'without');
                         return false;
                     }, function(e){
                         xui.log("No item file: " + fid+ " - " +e);
