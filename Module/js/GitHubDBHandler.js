@@ -358,7 +358,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
             }).then( function(rst){
                 var promises = [],schema={};
                 if(withSchema){
-                    var p = api.readItem(requestId, repo, objectName, this.OBJ_SCHEMA_FILE,function(req, objectName, itemId, json){
+                    var p = api.readItem(requestId, repo, objectName, api.OBJ_SCHEMA_FILE,function(req, objectName, itemId, json){
                             xui.merge(schema, json, 'all');
                             return false;
                         }, function(e){
