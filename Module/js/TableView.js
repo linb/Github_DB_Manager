@@ -351,7 +351,7 @@ xui.Class('Module.TableView', 'xui.Module',{
                         "args":[
                             "row",
                             undefined,
-                            "{args[1]}"
+                            "{args[2]}"
                         ],
                         "method":"temp"
                     },
