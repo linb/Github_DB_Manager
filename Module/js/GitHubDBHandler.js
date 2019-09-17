@@ -352,6 +352,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
             if(false===api.fireEvent("beforeDBAction", ["listItems",requestId,arguments])){
                 return;
             }
+            wordIn = xui.str.trim(wordIn);
             clientWithAuth.search.code({
                 q: (wordIn?(wordIn + " in:file"):"") + " repo:"+user+"/"+repo+" path:"+api.DB_ROOT_PATH+"/"+objectName+"/ extension:json",
                 sort:"indexed",
