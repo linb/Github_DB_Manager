@@ -187,7 +187,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
             clientWithAuth.repos.getContents({
                 owner:api.getGithubUser(),
                 repo:repo,
-                path: api.DB_ROOT_PATH+"/"+objectName
+                path: api.DB_ROOT_PATH+"/"+objectName+ "?" + xui.rand( )
             }).then(function(rst){
                 if(xui.isArr(rst.data)){
                     xui.tryF(onSuccess, [requestId, objectName]);
@@ -367,7 +367,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
             clientWithAuth.repos.getContents({
                 owner:api.getGithubUser(),
                 repo:repo,
-                path: api.DB_ROOT_PATH+"/"+objectName+"/"+itemId + ".json"
+                path: api.DB_ROOT_PATH+"/"+objectName+"/"+itemId + ".json"+ "?" + xui.rand( )
             }).then(function(rst){
                 if(rst.type=="file")
                     xui.tryF(onSuccess, [requestId, rst.sha, objectName, itemId]);
@@ -390,7 +390,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
             return clientWithAuth.repos.getContents({
                 owner:api.getGithubUser(),
                 repo:repo,
-                path: api.DB_ROOT_PATH+"/"+objectName+"/"+(itemId==api.OBJ_SCHEMA_FILE?itemId:(itemId + ".json"))
+                path: api.DB_ROOT_PATH+"/"+objectName+"/"+(itemId==api.OBJ_SCHEMA_FILE?itemId:(itemId + ".json"))+ "?" + xui.rand( )
             }).then(function(rst){
                 // folder
                 if(rst.data[0]){
