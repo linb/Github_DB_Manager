@@ -90,9 +90,9 @@ xui.Class('Module.TableView', 'xui.Module',{
                 .setWidth("24.583333333333332em")
                 .setLabelSize("8em")
                 .setLabelCaption("Search")
-                .setCommandBtn("delete")
                 .setType("input")
                 .setImageClass("xui-icon-search")
+                .setCommandBtn("delete")
             );
             
             host.xui_ui_block41.append(
@@ -104,6 +104,17 @@ xui.Class('Module.TableView', 'xui.Module',{
                 .setCaption("Refresh")
                 .onClick([
                     {
+                        "desc":"set query",
+                        "type":"other",
+                        "target":"var",
+                        "args":[
+                            "word",
+                            "{page.xui_ui_ci_search.getValue()}"
+                        ],
+                        "method":"page.properties",
+                        "event":1
+                    },
+                    {
                         "desc":"send msg",
                         "type":"page",
                         "target":"App",
@@ -114,6 +125,7 @@ xui.Class('Module.TableView', 'xui.Module',{
                             "refreshItemList",
                             "{page.properties.path}",
                             "{page.properties.page}",
+                            "{page.properties.word}",
                             "{page.functions.setResult}"
                         ],
                         "method":"postMessage",
