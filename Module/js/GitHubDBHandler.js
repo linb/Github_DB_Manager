@@ -112,7 +112,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
         listRepos : function(requestId, cur_page, page_size, nameIn, sort, order, onSuccess, onFail){
             var api=this,
                 clientWithAuth = this.getGithubClient();
-            if(false===api.fireEvent("beforeDBAction", [requestId])){
+            if(false===api.fireEvent("beforeDBAction", ["listRepos",requestId,arguments])){
                 return;
             }
             
@@ -134,18 +134,18 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                 var args = [requestId, repos, rst.data.total_count||0, cur_page, page_size];
                 if(false !== xui.tryF(onSuccess, args))
                     api.fireEvent("onReposList", args);
-                api.fireEvent("afterDBAction", [requestId]);
+                api.fireEvent("afterDBAction", ["listRepos",requestId]);
             }).catch(function(e){
                 if(false!==xui.tryF(onFail,[e] )){
                     api.fireEvent("onError", [requestId,"listRepos",xui.getErrMsg(e),e]);
                 }
-                api.fireEvent("afterDBAction", [requestId]);
+                api.fireEvent("afterDBAction", ["listRepos",requestId]);
             });            
         },
         repoExist :  function(requestId, repo, onExist, onNotExist){
             var api=this,
                 clientWithAuth = api.getGithubClient();  
-            if(false===api.fireEvent("beforeDBAction", [requestId])){
+            if(false===api.fireEvent("beforeDBAction", ["repoExist",requestId,arguments])){
                 return;
             }            
             clientWithAuth.repos.get({
@@ -153,10 +153,10 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                 repo:repo
             }).then(function(){
                 xui.tryF(onExist,[requestId, repo]);
-                api.fireEvent("afterDBAction", [requestId]);
+                api.fireEvent("afterDBAction", ["repoExist",requestId]);
             }).catch(function(){
                 xui.tryF(onNotExist,[requestId, repo]); 
-                api.fireEvent("afterDBAction", [requestId]);
+                api.fireEvent("afterDBAction", ["repoExist",requestId]);
             });
         },
 
@@ -164,7 +164,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
         listObjects : function(requestId, repo, filter, onSuccess, onFail){
             var api=this,
                 clientWithAuth = this.getGithubClient();  
-            if(false===api.fireEvent("beforeDBAction", [requestId])){
+            if(false===api.fireEvent("beforeDBAction", ["listObjects",requestId,arguments])){
                 return;
             }
             clientWithAuth.repos.getContents({
@@ -183,7 +183,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                 var args = [requestId, objs];
                 if(false !== xui.tryF(onSuccess, args))
                     api.fireEvent("onObjectsList", args);      
-                api.fireEvent("afterDBAction", [requestId]);
+                api.fireEvent("afterDBAction", ["listObjects",requestId]);
             }).catch(function(e){
                 if(e.status == 404){
                     var args = [requestId, []];
@@ -194,13 +194,13 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                         api.fireEvent("onError", [requestId, "listObjects", xui.getErrMsg(e),e]);
                     }
                 }
-                api.fireEvent("afterDBAction", [requestId]);
+                api.fireEvent("afterDBAction", ["listObjects",requestId]);
             });
         },
         objectExist:function(requestId, repo, objectName, onSuccess, onFail){
             var api=this,
                 clientWithAuth = api.getGithubClient();  
-            if(false===api.fireEvent("beforeDBAction", [requestId])){
+            if(false===api.fireEvent("beforeDBAction", ["objectExist",requestId,arguments])){
                 return;
             }
             clientWithAuth.repos.getContents({
@@ -221,18 +221,18 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                         api.fireEvent("onError", ["objectExist",requestId, xui.getErrMsg(e2),e2, 'none']);
                     }
                 }
-                api.fireEvent("afterDBAction", [requestId]);
+                api.fireEvent("afterDBAction", ["objectExist",requestId]);
             }).catch(function(e){
                 if(false!==xui.tryF(onFail,[e] )){
                     api.fireEvent("onError", ["objectExist",requestId, xui.getErrMsg(e), e, 'file']);
                 }
-                api.fireEvent("afterDBAction", [requestId]);
+                api.fireEvent("afterDBAction", ["objectExist",requestId]);
             });
         },
         createObject : function(requestId, repo, objectName, schema, onSuccess, onFail){
             var api=this,
                 clientWithAuth = api.getGithubClient();
-            if(false===api.fireEvent("beforeDBAction", [requestId])){
+            if(false===api.fireEvent("beforeDBAction", ["createObject",requestId,arguments])){
                 return;
             }            
             api.objectExist(requestId, repo, objectName, function(){
@@ -240,14 +240,14 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                 if(false!==xui.tryF(onFail,[e] )){
                     api.fireEvent("onError", ["createObject",requestId, xui.getErrMsg(e),e]);
                 }
-                api.fireEvent("afterDBAction", [requestId]);
+                api.fireEvent("afterDBAction", ["createObject",requestId]);
             }, function(a,b,c,d,type){   
                 if(type=="file"){
                     var e2  = new Error("The ''"+objectName+"'' is a file in repo path!");
                     if(false!==xui.tryF(onFail,[e2] )){
                         api.fireEvent("onError", ["createObject",requestId, xui.getErrMsg(e2), e2]);
                     }
-                    api.fireEvent("afterDBAction", [requestId]);
+                    api.fireEvent("afterDBAction", ["createObject",requestId]);
                 }else{
                     clientWithAuth.repos.createOrUpdateFile({
                         owner:api.getGithubUser(),
@@ -259,12 +259,12 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                         var args = [requestId, objectName];
                         if(false !== xui.tryF(onSuccess, args))
                             api.fireEvent("onObjectCreate", args);  
-                        api.fireEvent("afterDBAction", [requestId]);
+                        api.fireEvent("afterDBAction", ["createObject",requestId]);
                     }).catch(function(e){
                         if(false!==xui.tryF(onFail,[e] )){
                             api.fireEvent("onError", ["createObject",requestId, xui.getErrMsg(e),e]);
                         }
-                        api.fireEvent("afterDBAction", [requestId]);
+                        api.fireEvent("afterDBAction", ["createObject",requestId]);
                     }); 
                 }
                 return false;
@@ -277,7 +277,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                 sourceOwner = api.getGithubUser(),
                 sourceRepo = repo,
                 path = api.DB_ROOT_PATH+"/"+objectName;
-            if(false===api.fireEvent("beforeDBAction", [requestId])){
+            if(false===api.fireEvent("beforeDBAction", ["deleteObject",requestId,arguments])){
                 return;
             }
             
@@ -335,10 +335,10 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                     var args = [requestId, objectName];
                     if(false !== xui.tryF(onSuccess, args))
                         api.fireEvent("onObjectDelete", args);      
-                api.fireEvent("afterDBAction", [requestId]);
+                api.fireEvent("afterDBAction", ["deleteObject",requestId]);
                 }).catch((e)=>{
                     api.fireEvent("onError", ["deleteObject",requestId, xui.getErrMsg(e),e]);
-                    api.fireEvent("afterDBAction", [requestId]);
+                    api.fireEvent("afterDBAction", ["deleteObject",requestId]);
                 });
         },
 
@@ -346,7 +346,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
         listItems : function(requestId, repo, objectName, withSchema, cur_page, page_size, wordIn, order, onSuccess, onFail){
             var api=this,
                 clientWithAuth = api.getGithubClient();
-            if(false===api.fireEvent("beforeDBAction", [requestId])){
+            if(false===api.fireEvent("beforeDBAction", ["listItems",requestId,arguments])){
                 return;
             }
             clientWithAuth.search.code({
@@ -389,23 +389,23 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                      var args = [requestId, objectName, items, schema, rst.data.total_count||0, cur_page, page_size];
                      if(false !== xui.tryF(onSuccess, args))
                         api.fireEvent("onItemsList", args);
-                    api.fireEvent("afterDBAction", [requestId]);
+                    api.fireEvent("afterDBAction", ["listItems",requestId]);
                 }).catch(e=>{
                      api.fireEvent("onError", ["listItems",requestId, xui.getErrMsg(e),e]);
-                    api.fireEvent("afterDBAction", [requestId]);
+                    api.fireEvent("afterDBAction", ["listItems",requestId]);
                 });
             }).catch(function(e){
                 if(false!==xui.tryF(onFail,[e] )){
                     api.fireEvent("onError", ["listItems",requestId, xui.getErrMsg(e),e]);
                 }
-                api.fireEvent("afterDBAction", [requestId]);
+                api.fireEvent("afterDBAction", ["listItems",requestId]);
             }); 
         },
         itemExist:function(requestId, repo, objectName, itemId, onSuccess, onFail){
             var api=this,
                 clientWithAuth = api.getGithubClient();  
             itemId = xui.isHash(itemId)?itemId._id:itemId;
-            if(false===api.fireEvent("beforeDBAction", [requestId])){
+            if(false===api.fireEvent("beforeDBAction", ["itemExist",requestId,arguments])){
                 return;
             }
             clientWithAuth.repos.getContents({
@@ -420,19 +420,19 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                     if(false!==xui.tryF(onFail,[e] ))
                         api.fireEvent("onError", ["itemExist",requestId, xui.getErrMsg(e),e]);
                 }
-                api.fireEvent("afterDBAction", [requestId]);
+                api.fireEvent("afterDBAction", ["itemExist",requestId]);
             }).catch(function(e){
                 if(false!==xui.tryF(onFail,[e] )){
                     api.fireEvent("onError", ["itemExist",requestId, xui.getErrMsg(e),e]);
                 }
-                api.fireEvent("afterDBAction", [requestId]);
+                api.fireEvent("afterDBAction", ["itemExist",requestId]);
             });
         },
         readItem : function(requestId, repo, objectName, itemId, onSuccess, onFail){
             var api=this,
                 clientWithAuth = api.getGithubClient();
             itemId = xui.isHash(itemId)?itemId._id:itemId;
-            if(false===api.fireEvent("beforeDBAction", [requestId])){
+            if(false===api.fireEvent("beforeDBAction", ["readItem",requestId,arguments])){
                 return;
             }
             // return a promise
@@ -457,7 +457,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                         item = xui.unserialize(content);
                     }
                     if(item===false){
-                        api.fireEvent("afterDBAction", [requestId]);
+                        api.fireEvent("afterDBAction", ["readItem",requestId]);
                         throw new Error("Not JSON: " + content);
                     }
                     item._id=itemId;
@@ -465,12 +465,12 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                     if(false !== xui.tryF(onSuccess, args))
                         api.fireEvent("onItemRead", args);                           
                 }
-                api.fireEvent("afterDBAction", [requestId]);
+                api.fireEvent("afterDBAction", ["readItem",requestId]);
             }).catch(function(e){
                 if(false!==xui.tryF(onFail,[e] )){
                     api.fireEvent("onError", ["readItem",requestId, xui.getErrMsg(e),e]);
                 }
-                api.fireEvent("afterDBAction", [requestId]);
+                api.fireEvent("afterDBAction", ["readItem",requestId]);
             });
         },
         createItem : function(requestId, repo,  objectName, item, onSuccess, onFail){
@@ -478,7 +478,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                 clientWithAuth = api.getGithubClient(),
                 content = JSON.stringify(item), 
                 itemId = xui.rand();
-            if(false===api.fireEvent("beforeDBAction", [requestId])){
+            if(false===api.fireEvent("beforeDBAction", ["createItem",requestId,arguments])){
                 return;
             }
             clientWithAuth.repos.createFile({
@@ -501,12 +501,12 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                 }, path.replace(/[^\/]*$/,'').replace(/\/$/,'')];
                 if(false !== xui.tryF(onSuccess, args))
                     api.fireEvent("onItemCreate", args);      
-                api.fireEvent("afterDBAction", [requestId]);
+                api.fireEvent("afterDBAction", ["createItem",requestId]);
             }).catch(function(e){
                 if(false!==xui.tryF(onFail,[e] )){
                     api.fireEvent("onError", ["createItem",requestId, xui.getErrMsg(e),e]);
                 }
-                api.fireEvent("afterDBAction", [requestId]);
+                api.fireEvent("afterDBAction", ["createItem",requestId]);
             });            
         },
         updateItem : function(requestId, repo, objectName, item, itemId, onSuccess, onFail){
@@ -514,7 +514,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                 clientWithAuth = api.getGithubClient(),
                 content = JSON.stringify(item);
             itemId = itemId || item._id;
-            if(false===api.fireEvent("beforeDBAction", [requestId])){
+            if(false===api.fireEvent("beforeDBAction", ["updateItem",requestId,arguments])){
                 return;
             }
             api.itemExist(requestId, repo, objectName, itemId, function(req, sha){
@@ -530,26 +530,26 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                     var args = [requestId, objectName, item, itemId];
                     if(false !== xui.tryF(onSuccess, args))
                         api.fireEvent("onItemUpdate", args);     
-                    api.fireEvent("afterDBAction", [requestId]);
+                    api.fireEvent("afterDBAction", ["updateItem",requestId]);
                 }).catch(function(e){
                     if(false!==xui.tryF(onFail,[e] )){
                         api.fireEvent("onError", ["updateItem",requestId, xui.getErrMsg(e),e]);
                     }
-                    api.fireEvent("afterDBAction", [requestId]);
+                    api.fireEvent("afterDBAction", ["updateItem",requestId]);
                 });
             },function(req, msg){
                 var e =  new Error(msg);
                 if(false!==xui.tryF(onFail,[e] )){
                     api.fireEvent("onError", ["updateItem",requestId, xui.getErrMsg(e),e]);
                 }
-                api.fireEvent("afterDBAction", [requestId]);
+                api.fireEvent("afterDBAction", ["updateItem",requestId]);
             });
         },
         deleteItem : function(requestId, repo, objectName, itemId, onSuccess, onFail){
             var api=this,
                 clientWithAuth = api.getGithubClient();
             itemId = xui.isHash(itemId)?itemId._id:itemId;
-            if(false===api.fireEvent("beforeDBAction", [requestId])){
+            if(false===api.fireEvent("beforeDBAction", ["deleteItem",requestId,arguments])){
                 return;
             }
             api.itemExist(requestId, repo, objectName, itemId, function(req, sha){
@@ -563,19 +563,19 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                     var args = [requestId, objectName, itemId];
                     if(false !== xui.tryF(onSuccess, args))
                         api.fireEvent("onItemDelete", args);     
-                    api.fireEvent("afterDBAction", [requestId]);
+                    api.fireEvent("afterDBAction", ["deleteItem",requestId]);
                 }).catch(function(e){
                     if(false!==xui.tryF(onFail,[e] )){
                         api.fireEvent("onError", ["deleteItem",requestId, xui.getErrMsg(e),e]);
                     }
-                    api.fireEvent("afterDBAction", [requestId]);
+                    api.fireEvent("afterDBAction", ["deleteItem",requestId]);
                 });
             },function(req, msg){
                 var e=new Error(msg);
                 if(false!==xui.tryF(onFail,[e] )){
                     api.fireEvent("onError", ["deleteItem",requestId, xui.getErrMsg(e),e]);
                 }
-                api.fireEvent("afterDBAction", [requestId]);
+                api.fireEvent("afterDBAction", ["deleteItem",requestId]);
             });
         },
         iniComponents:function(){
@@ -676,6 +676,13 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
             objectName: ""
         },
         $EventHandlers :{
+            beforeDBAction : function(funName /*String, function name*/,
+                                       requestId /*String, the given request id*/,
+                                       args /*Array, arguments*/
+                                       ){},
+            afterDBAction : function(funName /*String, function name*/,
+                                      requestId /*String, the given request id*/
+                                       ){},
             onError : function(funName /*String, function name*/,
                               requestId /*String, the given request id*/, 
                               errMsg /*String, error message*/,
