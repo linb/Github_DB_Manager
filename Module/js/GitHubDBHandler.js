@@ -206,21 +206,30 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
         createObject : function(requestId, repo, objectName, schema, onSuccess, onFail){
             var api=this,
                 clientWithAuth = api.getGithubClient();
-            clientWithAuth.repos.createFile({
-                owner:api.getGithubUser(),
-                repo:repo,
-                path: api.DB_ROOT_PATH+"/"+objectName+"/"+api.OBJ_SCHEMA_FILE,
-                message:"Created by CrossUI GitHub DB",
-                content: Base64.encode( JSON.stringify(schema)||" " )
-            }).then(function(rsp){
-                var args = [requestId, objectName];
-                if(false !== xui.tryF(onSuccess, args))
-                    api.fireEvent("onObjectCreate", args);                
-            }).catch(function(e){
+            api.objectExist(requestId, repo, objectName, function(){
+                var e  = new Error("Object "+objectName+" exists already!");
                 if(false!==xui.tryF(onFail,[e] )){
                     api.fireEvent("onError", ["createObject",requestId, xui.getErrMsg(e)]);
                 }
-            }); 
+            }, function(){    
+                clientWithAuth.repos.createOrUpdateFile({
+                    owner:api.getGithubUser(),
+                    repo:repo,
+                    path: api.DB_ROOT_PATH+"/"+objectName+"/"+api.OBJ_SCHEMA_FILE,
+                    message:"Created by CrossUI GitHub DB",
+                    content: Base64.encode( JSON.stringify(schema)||" " )
+                }).then(function(rsp){
+                    var args = [requestId, objectName];
+                    if(false !== xui.tryF(onSuccess, args))
+                        api.fireEvent("onObjectCreate", args);                
+                }).catch(function(e){
+                    if(false!==xui.tryF(onFail,[e] )){
+                        api.fireEvent("onError", ["createObject",requestId, xui.getErrMsg(e)]);
+                    }
+                }); 
+                return false;
+            })
+            
         },
         deleteObject:function(requestId, repo, objectName, onSuccess, onFail){
             var api=this,
