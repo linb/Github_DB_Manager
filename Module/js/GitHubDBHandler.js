@@ -350,7 +350,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                 return;
             }
             clientWithAuth.search.code({
-                q: (wordIn?(wordIn+" "):"") + "path:"+api.DB_ROOT_PATH+"/"+objectName+"/ extension:json",
+                q: (wordIn?(wordIn+" "):"") + "path:"+api.DB_ROOT_PATH+""+objectName+"/ extension:json",
                 sort:"indexed",
                 order:order || "desc",
                 page:cur_page|| 1,
