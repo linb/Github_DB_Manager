@@ -360,7 +360,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
             }).then( function(rst){
                 var promises = [],schema={};
                 if(withSchema){
-                    var p = api.readItem(requestId, repo, objectName, api.OBJ_SCHEMA_FILE,function(req, objectName, itemId, json){
+                    var p = api.readItem(requestId, repo, objectName, api.OBJ_SCHEMA_FILE,function(req, objectName, json, itemId){
                             xui.merge(schema, json, 'all');
                             return false;
                         }, function(e){
@@ -372,7 +372,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                 var items = [], item,fid;
                 rst.data.items.forEach( function(v, i){
                     fid=v.name.replace(/\.json$/,"");
-                    var p=api.readItem(requestId+":"+fid, repo, objectName, fid, function(req, objectName, itemId, json){
+                    var p=api.readItem(requestId+":"+fid, repo, objectName, fid, function(req, objectName, json, itemId){
                         xui.merge(item, json, 'without');
                         return false;
                     }, function(e){
