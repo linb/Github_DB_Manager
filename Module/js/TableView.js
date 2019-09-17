@@ -87,6 +87,26 @@ xui.Class('Module.TableView', 'xui.Module',{
                         "redirection":"page::"
                     }
                 ])
+                .afterCellUpdated([
+                    {
+                        "desc":"update msg",
+                        "type":"page",
+                        "target":"App",
+                        "args":[
+                            "{page.postMessage()}",
+                            undefined,
+                            undefined,
+                            "updateitem",
+                            "{global.repoName}",
+                            "{args[5].id}",
+                            "{args[6].id}",
+                            "{args[2].value}",
+                            ""
+                        ],
+                        "method":"postMessage",
+                        "redirection":"page::"
+                    }
+                ])
             );
             
             append(
