@@ -38,6 +38,28 @@ xui.Class('Module.TableView', 'xui.Module',{
                     }
                 ])
                 .setHotRowMode("show")
+                .beforeHotRowAdded({
+                    "return":"{false}",
+                    "actions":[
+                        {
+                            "desc":"addItem",
+                            "type":"page",
+                            "target":"Module.TableView",
+                            "args":[
+                                "{page.postMessage()}",
+                                undefined,
+                                undefined,
+                                "addItem",
+                                "{global.repoName}",
+                                "{page.properties.path}",
+                                "{args[1]}",
+                                "{page.functions.addRow}"
+                            ],
+                            "method":"postMessage",
+                            "redirection":"page::"
+                        }
+                    ]
+                })
                 .onCmd([
                     {
                         "desc":"del",
@@ -286,8 +308,68 @@ xui.Class('Module.TableView', 'xui.Module',{
                         "redirection":"other:callback:call"
                     }
                 ]
+            },
+            "addRow":{
+                "desc":"",
+                "params":[
+                    {
+                        "id":"a",
+                        "type":"String",
+                        "desc":""
+                    },
+                    {
+                        "id":"b",
+                        "type":"String",
+                        "desc":""
+                    },
+                    {
+                        "id":"item",
+                        "type":"Object",
+                        "desc":""
+                    },
+                    {
+                        "id":"itemId",
+                        "type":"String",
+                        "desc":""
+                    }
+                ],
+                "actions":[
+                    {
+                        "desc":"temp",
+                        "type":"other",
+                        "target":"var",
+                        "args":[
+                            "row",
+                            undefined,
+                            "{args[1]}"
+                        ],
+                        "method":"temp"
+                    },
+                    {
+                        "desc":"add row id",
+                        "type":"other",
+                        "target":"var",
+                        "args":[
+                            "row.__o__id",
+                            "{args[3]}"
+                        ],
+                        "method":"temp"
+                    },
+                    {
+                        "desc":"addRow",
+                        "type":"control",
+                        "target":"xui_ui_treegrid21",
+                        "args":[
+                            "{args[2]}",
+                            null,
+                            null,
+                            false
+                        ],
+                        "method":"insertRows"
+                    }
+                ]
             }
-        }
+        } 
     },
     // export
     Static:{
