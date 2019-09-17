@@ -1133,6 +1133,30 @@ xui.Class('App', 'xui.Module',{
                         }
                     ],
                     "redirection":"other:callback:call"
+                },
+                {
+                    "desc":"delItem",
+                    "type":"module",
+                    "target":"module_githubdb",
+                    "args":[
+                        "{page.module_githubdb.deleteItem}",
+                        undefined,
+                        undefined,
+                        "delItem",
+                        "{args[2]}",
+                        "{args[3]}",
+                        "{args[4]}",
+                        "{args[5]}"
+                    ],
+                    "method":"$Functions.deleteItem",
+                    "conditions":[
+                        {
+                            "left":"{args[1]}",
+                            "symbol":"=",
+                            "right":"delItem"
+                        }
+                    ],
+                    "redirection":"other:callback:call"
                 }
             ]
         },
