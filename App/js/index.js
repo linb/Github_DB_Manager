@@ -322,7 +322,7 @@ xui.Class('App', 'xui.Module',{
                                 "{true}",
                                 1,
                                 "{global.page_size}",
-                                "{",
+                                ":",
                                 "","",
                                 "{temp.newbies.clfjj5fi.functions.setResult}"
                             ],
