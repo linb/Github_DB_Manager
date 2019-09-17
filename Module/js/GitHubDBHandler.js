@@ -291,8 +291,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                     owner:sourceOwner,
                     repo:sourceRepo,
                     ref:"heads/master",
-                    sha: rsp.data.sha,
-                    force: true
+                    sha: rsp.data.sha 
                 })
             };
             // use create tree to delete quickly
