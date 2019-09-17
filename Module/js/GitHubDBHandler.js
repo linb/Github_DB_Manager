@@ -350,7 +350,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                 return;
             }
             // we have to add a search word
-            wordIn = wordIn || "//crossuigithubdbrecordmarkateachrecordverytail";
+            wordIn = wordIn || "crossuigithubdbrecordmarkateachrecordverytail";
             clientWithAuth.search.code({
                 q: wordIn + " path:"+api.DB_ROOT_PATH+"/"+objectName+"/ extension:json",
                 sort:"indexed",
