@@ -286,6 +286,13 @@ xui.Class('App.SchemaSelector', 'xui.Module',{
                         ],
                         "method":"postMessage",
                         "redirection":"page::"
+                    },
+                    {
+                        "desc":"close",
+                        "type":"page",
+                        "target":"App.SchemaSelector",
+                        "args":[ ],
+                        "method":"destroy"
                     }
                 ])
             );
