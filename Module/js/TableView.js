@@ -99,7 +99,7 @@ xui.Class('Module.TableView', 'xui.Module',{
                             "updateItem",
                             "{global.repoName}",
                             "{page.properties.path}",
-                            "{page.xui_ui_treegrid21.getRowMap}",
+                            "{page.xui_ui_treegrid21.getRowMap()}",
                             "",
                             ""
                         ],
