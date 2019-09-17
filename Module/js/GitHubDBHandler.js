@@ -388,6 +388,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                             _id:fid
                         };
                         pool[fid] = item;
+                        // keep order
                         items.push(item);
                     }
                 });
