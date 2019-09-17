@@ -218,8 +218,7 @@ xui.Class('Module.TableView', 'xui.Module',{
                         "args":[
                             { },
                             {
-                                "header":"{args[3].prop}",
-                                "rawData":"{args[3].prop}"
+                                "header":"{args[3].prop}"
                             }
                         ],
                         "method":"setProperties",
