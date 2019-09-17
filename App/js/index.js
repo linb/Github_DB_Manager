@@ -573,6 +573,13 @@ xui.Class('App', 'xui.Module',{
                 .setEvents({
                     "onError":[
                         {
+                            "desc":"freeUI",
+                            "type":"other",
+                            "target":"msg",
+                            "args":[ ],
+                            "method":"free"
+                        },
+                        {
                             "desc":"log",
                             "type":"other",
                             "target":"msg",
@@ -586,7 +593,7 @@ xui.Class('App', 'xui.Module',{
                             "type":"other",
                             "target":"msg",
                             "args":[
-                                "Please try to delete object later!",
+                                "Github refused the push, try to delete object later, Please!",
                                 "Try later"
                             ],
                             "method":"message",
