@@ -352,7 +352,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
             // we have to add a search word
             wordIn = wordIn || "crossuigithubdbrecordmarkateachrecordverytail";
             clientWithAuth.search.code({
-                q: wordIn + " path:"+api.DB_ROOT_PATH+"/"+objectName+"/ extension:json " + rand(),
+                q: wordIn + " path:"+api.DB_ROOT_PATH+"/"+objectName+"/ extension:json " + xui.rand(),
                 sort:"indexed",
                 order:order || "desc",
                 page:cur_page|| 1,
