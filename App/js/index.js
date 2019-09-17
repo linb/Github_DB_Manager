@@ -1081,6 +1081,34 @@ xui.Class('App', 'xui.Module',{
                         }
                     ],
                     "redirection":"other:callback:call"
+                },
+                {
+                    "desc":"refresh records",
+                    "type":"module",
+                    "target":"module_githubdb",
+                    "args":[
+                        "{page.module_githubdb.listItems}",
+                        undefined,
+                        undefined,
+                        "listItems",
+                        "{global.repoName}",
+                        "{args[2]}",
+                        "{false}",
+                        "{args[3]}",
+                        "{global.page_size}",
+                        "{args[4]}",
+                        undefined,
+                        "{args[5]}"
+                    ],
+                    "method":"$Functions.listItems",
+                    "conditions":[
+                        {
+                            "left":"{args[1]}",
+                            "symbol":"=",
+                            "right":"refreshItemList"
+                        }
+                    ],
+                    "redirection":"other:callback:call"
                 }
             ]
         },
