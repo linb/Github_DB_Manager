@@ -385,7 +385,8 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                     if(p){
                         promises.push(p);
                         item = {
-                            _id:fid
+                            // object id
+                            __o__id:fid
                         };
                         pool[fid] = item;
                         // keep order
