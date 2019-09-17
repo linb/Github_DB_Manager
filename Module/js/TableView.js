@@ -104,6 +104,7 @@ xui.Class('Module.TableView', 'xui.Module',{
                 xui.create("xui.UI.ComboInput")
                 .setHost(host,"xui_ui_ci_search")
                 .setDirtyMark(false)
+                .setShowDirtyMark(false)
                 .setLeft("2.5em")
                 .setTop("0.8333333333333334em")
                 .setWidth("24.583333333333332em")
