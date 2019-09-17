@@ -1109,6 +1109,30 @@ xui.Class('App', 'xui.Module',{
                         }
                     ],
                     "redirection":"other:callback:call"
+                },
+                {
+                    "desc":"add Row",
+                    "type":"module",
+                    "target":"module_githubdb",
+                    "args":[
+                        "{page.module_githubdb.createItem}",
+                        undefined,
+                        undefined,
+                        "createItem",
+                        "{args[2]}",
+                        "{args[3]}",
+                        "{args[4]}",
+                        "{args[5]}"
+                    ],
+                    "method":"$Functions.createItem",
+                    "conditions":[
+                        {
+                            "left":"{args[1]}",
+                            "symbol":"=",
+                            "right":"addItem"
+                        }
+                    ],
+                    "redirection":"other:callback:call"
                 }
             ]
         },
