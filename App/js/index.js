@@ -1085,13 +1085,6 @@ xui.Class('App', 'xui.Module',{
                         "return":false
                     },
                     {
-                        "desc":"busyUI",
-                        "type":"other",
-                        "target":"msg",
-                        "args":[ ],
-                        "method":"busy"
-                    },
-                    {
                         "desc":"delete",
                         "type":"module",
                         "target":"module_githubdb",
