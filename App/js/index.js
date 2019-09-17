@@ -129,6 +129,27 @@ xui.Class('App', 'xui.Module',{
                                 "right":"new"
                             }
                         ]
+                    },
+                    {
+                        "desc":"refresh",
+                        "type":"module",
+                        "target":"module_githubdb",
+                        "args":[
+                            "{page.module_githubdb.listObjects}",
+                            undefined,
+                            undefined,
+                            "listObj",
+                            "{global.repoName}"
+                        ],
+                        "method":"$Functions.listObjects",
+                        "conditions":[
+                            {
+                                "left":"{args[1].id}",
+                                "symbol":"=",
+                                "right":"refresh"
+                            }
+                        ],
+                        "redirection":"other:callback:call"
                     }
                 ])
             );
