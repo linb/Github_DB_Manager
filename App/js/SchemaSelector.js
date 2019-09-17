@@ -289,8 +289,8 @@ xui.Class('App.SchemaSelector', 'xui.Module',{
                     },
                     {
                         "desc":"close",
-                        "type":"page",
-                        "target":"App.SchemaSelector",
+                        "type":"control",
+                        "target":"xui_ui_dialog6",
                         "args":[ ],
                         "method":"destroy"
                     }
