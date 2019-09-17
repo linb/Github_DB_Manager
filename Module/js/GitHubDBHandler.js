@@ -483,10 +483,10 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                 api.fireEvent("afterDBAction", ["readItem",requestId]);
             });
         },
-        createItem : function(requestId, repo,  objectName, item, onSuccess, onFail){
+        createItem : function(requestId, repo, objectName, item, onSuccess, onFail){
             var api=this,
                 clientWithAuth = api.getGithubClient(),
-                content = JSON.stringify(item), 
+                content = JSON.stringify(item),
                 itemId = xui.rand();
             if(false===api.fireEvent("beforeDBAction", ["createItem",requestId,arguments])){
                 return;
