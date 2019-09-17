@@ -591,6 +591,23 @@ xui.Class('App', 'xui.Module',{
                                 "{args}"
                             ],
                             "method":"log"
+                        },
+                        {
+                            "desc":"if delObj",
+                            "type":"other",
+                            "target":"msg",
+                            "args":[
+                                "Please try to delete object later!",
+                                "Try later"
+                            ],
+                            "method":"message",
+                            "conditions":[
+                                {
+                                    "left":"{args[1]}",
+                                    "symbol":"=",
+                                    "right":"delObj"
+                                }
+                            ]
                         }
                     ],
                     "onGithubLogin":[
