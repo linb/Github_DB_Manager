@@ -96,7 +96,7 @@ xui.Class('Module.TableView', 'xui.Module',{
                             "{page.postMessage()}",
                             undefined,
                             undefined,
-                            "updateitem",
+                            "updateItem",
                             "{global.repoName}",
                             "{page.properties.path}",
                             "{page.xui_ui_treegrid21.getRowMap}",
