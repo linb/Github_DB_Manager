@@ -725,14 +725,18 @@ xui.Class('App', 'xui.Module',{
                     ],
                     "onObjectCreate":[
                         {
-                            "desc":"show Messge",
-                            "type":"other",
-                            "target":"msg",
+                            "desc":"refresh tables",
+                            "type":"module",
+                            "target":"module_githubdb",
                             "args":[
-                                "Created!",
-                                "You can refresh to show the database after a while ( Github need seconds to be re-built)."
+                                "{page.module_githubdb.listObjects}",
+                                undefined,
+                                undefined,
+                                "list",
+                                "{global.repoName}"
                             ],
-                            "method":"pop"
+                            "method":"$Functions.listObjects",
+                            "redirection":"other:callback:call"
                         }
                     ]
                 })
