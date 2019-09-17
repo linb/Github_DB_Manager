@@ -423,7 +423,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                 rand:xui.rand()
             }).then(function(rst){
                 if(rst.data.type=="file")
-                    xui.tryF(onSuccess, [requestId, rst.sha, objectName, itemId]);
+                    xui.tryF(onSuccess, [requestId, rst.data.sha, objectName, itemId]);
                 else{
                     var e=new Error("Not an item file");
                     if(false!==xui.tryF(onFail,[e] ))
@@ -498,7 +498,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                 message:"Created by CrossUI GitHub DB",
                 content: Base64.encode( content||"" )
             }).then(function(rsp){
-                var info = rsp.data.content;
+                var info = rsp.data;
                 var args = [requestId, objectName, item,  itemId, info.sha, {
                     id: info.path,
                     path: info.path,
