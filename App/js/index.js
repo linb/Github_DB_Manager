@@ -730,7 +730,7 @@ xui.Class('App', 'xui.Module',{
                             "target":"msg",
                             "args":[
                                 "Created!",
-                                "ou can refresh to show the database after a while ( Github pages need seconds to be re-built)."
+                                "You can refresh to show the database after a while ( Github need seconds to be re-built)."
                             ],
                             "method":"pop"
                         }
