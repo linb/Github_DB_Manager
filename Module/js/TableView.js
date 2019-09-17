@@ -70,6 +70,25 @@ xui.Class('Module.TableView', 'xui.Module',{
                 .setLeft("0.8333333333333334em")
                 .setTop("0.8333333333333334em")
                 .setCaption("Page")
+                .onPageSet([
+                    {
+                        "desc":"set prop",
+                        "type":"other",
+                        "target":"var",
+                        "args":[
+                            "page",
+                            "{args[1]}"
+                        ],
+                        "method":"page.properties"
+                    },
+                    {
+                        "desc":"refresh",
+                        "type":"control",
+                        "target":"xui_ui_btn_refresh",
+                        "args":[ ],
+                        "method":"fireClickEvent"
+                    }
+                ])
             );
             
             append(
@@ -177,7 +196,7 @@ xui.Class('Module.TableView', 'xui.Module',{
                         "method":"log"
                     },
                     {
-                        "desc":"set header",
+                        "desc":"set grid",
                         "type":"control",
                         "target":"xui_ui_treegrid21",
                         "args":[
@@ -190,6 +209,44 @@ xui.Class('Module.TableView', 'xui.Module',{
                             }
                         ],
                         "method":"setProperties"
+                    },
+                    {
+                        "desc":"set page size",
+                        "type":"control",
+                        "target":"xui_ui_pagebar",
+                        "args":[
+                            { },
+                            {
+                                "pageCount":"{global.page_size}"
+                            }
+                        ],
+                        "method":"setProperties"
+                    },
+                    {
+                        "desc":"set total page",
+                        "type":"control",
+                        "target":"xui_ui_pagebar",
+                        "args":[
+                            "{page.xui_ui_pagebar.setTotalCount()}",
+                            undefined,
+                            undefined,
+                            "{args[4]}"
+                        ],
+                        "method":"setTotalCount",
+                        "redirection":"other:callback:call"
+                    },
+                    {
+                        "desc":"set cur page",
+                        "type":"control",
+                        "target":"xui_ui_pagebar",
+                        "args":[
+                            "{page.xui_ui_pagebar.setPage()}",
+                            undefined,
+                            undefined,
+                            "{args[5]}"
+                        ],
+                        "method":"setPage",
+                        "redirection":"other:callback:call"
                     }
                 ]
             }
