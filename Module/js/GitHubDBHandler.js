@@ -412,7 +412,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
         itemExist:function(requestId, repo, objectName, itemId, onSuccess, onFail){
             var api=this,
                 clientWithAuth = api.getGithubClient();  
-            itemId = xui.isHash(itemId)?itemId._id:itemId;
+            itemId = xui.isHash(itemId)?itemId.__o__id:itemId;
             if(false===api.fireEvent("beforeDBAction", ["itemExist",requestId,arguments])){
                 return;
             }
@@ -440,7 +440,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
         readItem : function(requestId, repo, objectName, itemId, onSuccess, onFail){
             var api=this,
                 clientWithAuth = api.getGithubClient();
-            itemId = xui.isHash(itemId)?itemId._id:itemId;
+            itemId = xui.isHash(itemId)?itemId.__o__id:itemId;
             if(false===api.fireEvent("beforeDBAction", ["readItem",requestId,arguments])){
                 return;
             }
@@ -470,7 +470,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                         api.fireEvent("afterDBAction", ["readItem",requestId]);
                         throw new Error("Not JSON: " + content);
                     }
-                    item._id=itemId;
+                    item.__o__id=itemId;
                     var args = [requestId, objectName, item, itemId, rst.data.sha];
                     if(false !== xui.tryF(onSuccess, args))
                         api.fireEvent("onItemRead", args);                           
@@ -522,7 +522,9 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
             var api=this,
                 clientWithAuth = api.getGithubClient(),
                 content = JSON.stringify(item);
-            itemId = itemId || item._id;
+            itemId = itemId || item.__o__id;
+            delete item.__o__id;
+            
             if(false===api.fireEvent("beforeDBAction", ["updateItem",requestId,arguments])){
                 return;
             }
@@ -535,7 +537,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                     message:"Updated by CrossUI GitHub DB",
                     content: Base64.encode( content )
                 }).then(function(rsp){
-                    item._id = itemId;
+                    item.__o__id = itemId;
                     var args = [requestId, objectName, item, itemId];
                     if(false !== xui.tryF(onSuccess, args))
                         api.fireEvent("onItemUpdate", args);     
@@ -557,7 +559,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
         deleteItem : function(requestId, repo, objectName, itemId, onSuccess, onFail){
             var api=this,
                 clientWithAuth = api.getGithubClient();
-            itemId = xui.isHash(itemId)?itemId._id:itemId;
+            itemId = xui.isHash(itemId)?itemId.__o__id:itemId;
             if(false===api.fireEvent("beforeDBAction", ["deleteItem",requestId,arguments])){
                 return;
             }
