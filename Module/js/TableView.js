@@ -37,7 +37,7 @@ xui.Class('Module.TableView', 'xui.Module',{
                         "tag":"row"
                     }
                 ])
-                .setHotRowMode("auto")
+                .setHotRowMode("show")
                 .beforeHotRowAdded({
                     "return":"{false}",
                     "actions":[
