@@ -499,7 +499,6 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                 content: Base64.encode( content||"" )
             }).then(function(rsp){
                 var info = rsp.data.content;
-                item._id=itemId;
                 var args = [requestId, objectName, item,  itemId, info.sha, {
                     id: info.path,
                     path: info.path,
