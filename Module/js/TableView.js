@@ -230,12 +230,13 @@ xui.Class('Module.TableView', 'xui.Module',{
                         "type":"control",
                         "target":"xui_ui_pagebar",
                         "args":[
-                            { },
-                            {
-                                "pageCount":"{global.page_size}"
-                            }
+                            "{page.xui_ui_pagebar.setPageCount()}",
+                            undefined,
+                            undefined,
+                            "{args[6]}"
                         ],
-                        "method":"setProperties"
+                        "method":"setPageSize",
+                        "redirection":"other:callback:call"
                     },
                     {
                         "desc":"set total page",
