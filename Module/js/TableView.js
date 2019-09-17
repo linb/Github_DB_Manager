@@ -69,6 +69,19 @@ xui.Class('Module.TableView', 'xui.Module',{
                             "{args}"
                         ],
                         "method":"log"
+                    },
+                    {
+                        "desc":"set header",
+                        "type":"control",
+                        "target":"xui_ui_treegrid21",
+                        "args":[
+                            { },
+                            {
+                                "header":"{args[3]}",
+                                "rows":"{args[2]}"
+                            }
+                        ],
+                        "method":"setProperties"
                     }
                 ]
             }
