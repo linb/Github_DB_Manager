@@ -270,7 +270,8 @@ xui.Class('App.SchemaSelector', 'xui.Module',{
                                 "symbol":"empty",
                                 "right":""
                             }
-                        ]
+                        ],
+                        "return":false
                     },
                     {
                         "desc":"post message",
