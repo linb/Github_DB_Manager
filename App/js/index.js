@@ -747,6 +747,17 @@ xui.Class('App', 'xui.Module',{
                             "method":"$Functions.listObjects",
                             "redirection":"other:callback:call"
                         }
+                    ],
+                    "onObjectDelete":[
+                        {
+                            "desc":"remove",
+                            "type":"control",
+                            "target":"xui_list_tables",
+                            "args":[
+                                "{args[1]}"
+                            ],
+                            "method":"removeItems"
+                        }
                     ]
                 })
             );
@@ -1097,6 +1108,6 @@ xui.Class('App', 'xui.Module',{
                     }
                 ]
             }
-        } 
+        }
     }
 });
