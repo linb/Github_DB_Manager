@@ -606,13 +606,14 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
         },
         $EventHandlers :{
             onError : function(funName /*String, function name*/,
-                                      requestId /*String, the given request id*/, 
-                                      error /*String, error message*/){},
+                              requestId /*String, the given request id*/, 
+                              errMsg /*String, error message*/,
+                              error /*Object, errorobject*/){},
             onGithubLogin : function(username /*String, user name*/, 
-                                      avatar /*String, user avatar url*/, 
-                                      user /*Object, user object*/,
-                                      token /*String, token*/
-                                     ){},
+                              avatar /*String, user avatar url*/, 
+                              user /*Object, user object*/,
+                              token /*String, token*/
+                             ){},
             onGithubLogout : function(username /*String, user name*/, token /*String, token*/){},
  
             onReposList : function(requestId /*String, requestid*/, 
