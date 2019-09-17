@@ -375,14 +375,9 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                 var items = [], item,fid;
                 rst.data.items.forEach( function(v, i){
                     fid=v.name.replace(/\.json$/,"");
-                    
+                    var pool={};
                     var p=api.readItem(requestId+":"+fid, repo, objectName, fid, function(req, objectName, json, itemId){
-                        item = {
-                            _id:fid
-                        };
-                        xui.merge(item, json, 'without');
-                        items.push(item);
-
+                        xui.merge( pool[fid], json, 'without');
                         return false;
                     }, function(e){
                         xui.log("No item file: " + fid+ " - " +e);
@@ -390,6 +385,11 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                     });
                     if(p){
                         promises.push(p);
+                        item = {
+                            _id:fid
+                        };
+                        pool[fid] = item;
+                        items.push(item);
                     }
                 });
                 Promise.all(promises).then(function(){
