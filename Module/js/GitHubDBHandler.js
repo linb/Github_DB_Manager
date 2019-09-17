@@ -349,6 +349,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
             if(false===api.fireEvent("beforeDBAction", ["listItems",requestId,arguments])){
                 return;
             }
+            // we have to add a search word
             wordIn = wordIn || "//crossui_db_record";
             clientWithAuth.search.code({
                 q: wordIn + "path:"+api.DB_ROOT_PATH+"/"+objectName+"/ extension:json",
