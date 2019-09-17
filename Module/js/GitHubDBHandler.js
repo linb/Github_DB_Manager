@@ -145,7 +145,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
             }).then(function(){
                 xui.tryF(onExist,[requestId, repo]);
             }).catch(function(){
-                xui.tryF(onNotExist,[requestId, repo]);
+                xui.tryF(onNotExist,[requestId, repo]); 
             });
         },
 
