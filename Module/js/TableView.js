@@ -108,7 +108,7 @@ xui.Class('Module.TableView', 'xui.Module',{
                 .setTop("0.8333333333333334em")
                 .setWidth("24.583333333333332em")
                 .setLabelSize("8em")
-                .setLabelCaption("Search")
+                .setLabelCaption("Search word")
                 .setType("input")
                 .setImageClass("xui-icon-search")
                 .setCommandBtn("delete")
