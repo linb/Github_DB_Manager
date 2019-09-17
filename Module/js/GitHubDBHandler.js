@@ -672,9 +672,9 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
         // export prop
         $DataModel:{
             // repo name
-            repoName: "",
+            // repoName: "",
             // object(table) name
-            objectName: ""
+            // objectName: ""
         },
         $EventHandlers :{
             beforeDBAction : function(funName /*String, function name*/,
