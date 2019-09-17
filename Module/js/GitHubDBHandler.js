@@ -592,6 +592,8 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
             githubLogout : function(){},
 
             setLastActionConf : function(lastActionConf/*Object, {fun:Function, scope:Object, params:Array}*/){},
+            
+            // two for repo
             listRepos : function(requestId /*String, the given request id*/, 
                                   cur_page /*Number, current page*/,
                                   page_size /*Number, per page count*/,
@@ -603,7 +605,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                                 repo /*String, repo name */, 
                                 onExist/*Function, function(requestId, repo){}*/, 
                                 onNotExist/*Function, function(requestId, repo){}*/){},
-
+             // 4 for table/object
             objectExist:function(requestId /*String, the given request id*/, 
                                 repo /*String, repo name */, 
                                 objectName /*String, object name*/, 
@@ -625,7 +627,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                                  objectName /*String, object name*/, 
                                  onSuccess /*Function, function(requestId, objectName){}*/, 
                                  onFail/*Function, function(errorMessage){}*/){},
-
+            // 6 for record / item
             listItems : function(requestId /*String, the given request id*/, 
                                   repo /*String, repo name */, 
                                   objectName /*String, object name*/, 
