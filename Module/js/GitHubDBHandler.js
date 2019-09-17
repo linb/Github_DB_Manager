@@ -590,7 +590,6 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
         $Functions:{
             ensureGithubAuth : function(){},
             githubLogout : function(){},
-
             setLastActionConf : function(lastActionConf/*Object, {fun:Function, scope:Object, params:Array}*/){},
             
             // two for repo
