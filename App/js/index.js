@@ -586,8 +586,8 @@ xui.Class('App', 'xui.Module',{
                             "type":"other",
                             "target":"msg",
                             "args":[
-                                "Github refused the push, try to delete object later, Please!",
-                                "Try later"
+                                "Github refused the push, Do not delete the Object as a Github dir too often. \nTry to delete object later, Please!",
+                                "Try later please"
                             ],
                             "method":"message",
                             "conditions":[
