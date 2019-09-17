@@ -183,6 +183,21 @@ xui.Class('Module.TableView', 'xui.Module',{
                         "id":"schema",
                         "type":"Hash",
                         "desc":""
+                    },
+                    {
+                        "id":"total_count",
+                        "type":"Number",
+                        "desc":""
+                    },
+                    {
+                        "id":"cur_page",
+                        "type":"Number",
+                        "desc":""
+                    },
+                    {
+                        "id":"page_size",
+                        "type":"Number",
+                        "desc":""
                     }
                 ],
                 "actions":[
