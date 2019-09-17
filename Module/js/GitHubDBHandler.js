@@ -189,17 +189,22 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                 repo:repo,
                 path: api.DB_ROOT_PATH+"/"+objectName
             }).then(function(rst){
-                if(xui.isArr(rst)){
+                if(xui.isArr(rst.data)){
                     xui.tryF(onSuccess, [requestId, objectName]);
+                }else if(rst.data.type){
+                    var e1= new Error("Not a dir");
+                    if(false!==xui.tryF(onFail,[e1] )){
+                        api.fireEvent("onError", ["objectExist",requestId, xui.getErrMsg(e1)]);
+                    }
                 }else{
-                    var e= new Error("Not an object dir");
-                    if(false!==xui.tryF(onFail,[e] )){
-                        api.fireEvent("onError", ["objectExist",requestId, xui.getErrMsg(e)]);
+                    var e2 = new Error("Doesn't exist");
+                    if(false!==xui.tryF(onFail,[e2] )){
+                        api.fireEvent("onError", ["objectExist",requestId, xui.getErrMsg(e2),'none']);
                     }
                 }
             }).catch(function(e){
                 if(false!==xui.tryF(onFail,[e] )){
-                    api.fireEvent("onError", ["objectExist",requestId, xui.getErrMsg(e)]);
+                    api.fireEvent("onError", ["objectExist",requestId, xui.getErrMsg(e),'file']);
                 }
             });
         },
@@ -211,22 +216,29 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                 if(false!==xui.tryF(onFail,[e] )){
                     api.fireEvent("onError", ["createObject",requestId, xui.getErrMsg(e)]);
                 }
-            }, function(){    
-                clientWithAuth.repos.createOrUpdateFile({
-                    owner:api.getGithubUser(),
-                    repo:repo,
-                    path: api.DB_ROOT_PATH+"/"+objectName+"/"+api.OBJ_SCHEMA_FILE,
-                    message:"Created by CrossUI GitHub DB",
-                    content: Base64.encode( JSON.stringify(schema)||" " )
-                }).then(function(rsp){
-                    var args = [requestId, objectName];
-                    if(false !== xui.tryF(onSuccess, args))
-                        api.fireEvent("onObjectCreate", args);                
-                }).catch(function(e){
-                    if(false!==xui.tryF(onFail,[e] )){
-                        api.fireEvent("onError", ["createObject",requestId, xui.getErrMsg(e)]);
+            }, function(a,b,c,type){   
+                if(type=="file"){
+                    var e2  = new Error("The ''"+objectName+"'' is a file in repo path!");
+                    if(false!==xui.tryF(onFail,[e2] )){
+                        api.fireEvent("onError", ["createObject",requestId, xui.getErrMsg(e2)]);
                     }
-                }); 
+                }else{
+                    clientWithAuth.repos.createOrUpdateFile({
+                        owner:api.getGithubUser(),
+                        repo:repo,
+                        path: api.DB_ROOT_PATH+"/"+objectName+"/"+api.OBJ_SCHEMA_FILE,
+                        message:"Created by CrossUI GitHub DB",
+                        content: Base64.encode( JSON.stringify(schema)||" " )
+                    }).then(function(rsp){
+                        var args = [requestId, objectName];
+                        if(false !== xui.tryF(onSuccess, args))
+                            api.fireEvent("onObjectCreate", args);                
+                    }).catch(function(e){
+                        if(false!==xui.tryF(onFail,[e] )){
+                            api.fireEvent("onError", ["createObject",requestId, xui.getErrMsg(e)]);
+                        }
+                    }); 
+                }
                 return false;
             })
             
