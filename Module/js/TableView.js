@@ -20,6 +20,15 @@ xui.Class('Module.TableView', 'xui.Module',{
             // [[Code created by CrossUI RAD Studio
             var host=this, children=[], append=function(child){children.push(child.get(0));};
             
+            append(
+                xui.create("xui.UI.TreeGrid")
+                .setHost(host,"xui_ui_treegrid21")
+                .setDirtyMark(false)
+                .setLeft("0em")
+                .setTop("0em")
+                .setRowNumbered(true)
+            );
+            
             return children;
             // ]]Code created by CrossUI RAD Studio
         },
