@@ -27,6 +27,7 @@ xui.Class('Module.TableView', 'xui.Module',{
                 .setLeft("0em")
                 .setTop("0em")
                 .setRowNumbered(true)
+                .setEditable(true)
                 .setTagCmds([
                     {
                         "id":"del",
@@ -241,7 +242,6 @@ xui.Class('Module.TableView', 'xui.Module',{
                             "{args[2]}"
                         ],
                         "method":"setRawData",
-                        "return":false,
                         "redirection":"other:callback:call"
                     },
                     {
