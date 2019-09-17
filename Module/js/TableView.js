@@ -98,9 +98,9 @@ xui.Class('Module.TableView', 'xui.Module',{
                             undefined,
                             "updateitem",
                             "{global.repoName}",
-                            "{args[5].id}",
-                            "{args[6].id}",
-                            "{args[2].value}",
+                            "{page.properties.path}",
+                            "{page.xui_ui_treegrid21.getRowMap}",
+                            "",
                             ""
                         ],
                         "method":"postMessage",
