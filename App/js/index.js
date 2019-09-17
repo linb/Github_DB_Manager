@@ -722,6 +722,18 @@ xui.Class('App', 'xui.Module',{
                                 }
                             ]
                         }
+                    ],
+                    "onObjectCreate":[
+                        {
+                            "desc":"show Messge",
+                            "type":"other",
+                            "target":"msg",
+                            "args":[
+                                "Created!",
+                                "You can refresh to show the database for a while ( Github pages will be ready in a minute)."
+                            ],
+                            "method":"pop"
+                        }
                     ]
                 })
             );
@@ -1072,6 +1084,6 @@ xui.Class('App', 'xui.Module',{
                     }
                 ]
             }
-        }
+        } 
     }
 });
