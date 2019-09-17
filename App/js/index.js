@@ -781,6 +781,24 @@ xui.Class('App', 'xui.Module',{
                             ],
                             "method":"removeItems"
                         }
+                    ],
+                    "afterDBAction":[
+                        {
+                            "desc":"free",
+                            "type":"other",
+                            "target":"msg",
+                            "args":[ ],
+                            "method":"free"
+                        }
+                    ],
+                    "beforeDBAction":[
+                        {
+                            "desc":"busy",
+                            "type":"other",
+                            "target":"msg",
+                            "args":[ ],
+                            "method":"busy"
+                        }
                     ]
                 })
             );
