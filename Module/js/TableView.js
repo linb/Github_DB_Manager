@@ -360,12 +360,12 @@ xui.Class('Module.TableView', 'xui.Module',{
                         "type":"control",
                         "target":"xui_ui_treegrid21",
                         "args":[
-                            "{args[2]}",
+                            "{temp.row}",
                             null,
                             null,
                             false
                         ],
-                        "method":"insertRows"
+                        "method":"insertMapRows"
                     }
                 ]
             }
