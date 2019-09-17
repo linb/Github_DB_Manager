@@ -215,9 +215,7 @@ xui.Class('Module.TableView', 'xui.Module',{
                         "type":"control",
                         "target":"xui_ui_treegrid21",
                         "args":[
-                            {
-                                "rows":[ ]
-                            },
+                            { },
                             {
                                 "header":"{args[3].prop}",
                                 "rawData":"{args[2]}"
