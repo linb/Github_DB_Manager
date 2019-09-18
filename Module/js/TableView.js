@@ -89,6 +89,21 @@ xui.Class('Module.TableView', 'xui.Module',{
                 ])
                 .afterCellUpdated([
                     {
+                        "desc":"if hotrow",
+                        "type":"none",
+                        "target":"none",
+                        "args":[ ],
+                        "method":"none",
+                        "conditions":[
+                            {
+                                "left":"{args[3]}",
+                                "symbol":"=",
+                                "right":"{true}"
+                            }
+                        ],
+                        "return":false
+                    },
+                    {
                         "desc":"update msg",
                         "type":"page",
                         "target":"App",
