@@ -731,6 +731,24 @@ xui.Class('App', 'xui.Module',{
                 .setVAlign("33.33%")
             );
             
+            host.xui_ui_svgpaper1.append(
+                xui.create("xui.UI.Icon")
+                .setHost(host,"xui_ui_icon19")
+                .setTop("0em")
+                .setRight("0em")
+                .setImageClass("xui-uicmd-close")
+                .setIconFontSize("3em")
+                .onClick([
+                    {
+                        "desc":"destroy",
+                        "type":"control",
+                        "target":"xui_ui_svgpaper1",
+                        "args":[ ],
+                        "method":"destroy"
+                    }
+                ])
+            );
+            
             append(
                 xui.create("Module.GitHubDBHandler", "xui.Module")
                 .setHost(host,"module_githubdb")
