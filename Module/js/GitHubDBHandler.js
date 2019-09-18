@@ -440,7 +440,13 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
 
                 for(var i=(cur_page - 1)*page_size, l=Math.min(total_count, cur_page*page_size); i<l; i++){
                     var v = rst.data[i];
-
+                    if(!v){
+                        break;
+                    }
+                    if(v.type!="file" || v.name==".gitkeep" || !xui.str.endWith(v.name,".json") ){
+                        l++;
+                        continue;
+                    }
                     fid=v.name.replace(/\.json$/,"");
                     var p=api.readItem(requestId+":"+fid, repo, objectName, fid, function(req, objectName, json, itemId){
                         xui.merge( pool[itemId], json, 'without');
