@@ -436,8 +436,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                     if(p) promises.push(p );
                 }
                 var items = [], pool={},item,fid;
-               
-//TODO: 直接从 (cur_page - 1)*page_size 取
+
                 for(var i=(cur_page - 1)*page_size, l=Math.min(total_count, cur_page*page_size); i<; i++){
                     var v = rst.data.tree[i];
 
