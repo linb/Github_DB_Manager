@@ -409,6 +409,74 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                 api.fireEvent("afterDBAction", ["listItems",requestId]);
             }); 
         },
+        
+        listItems2 : function(requestId, repo, objectName, withSchema, cur_page, page_size, onSuccess, onFail){
+            var api=this, user = api.getGithubUser(),
+                clientWithAuth = api.getGithubClient();
+            if(false===api.fireEvent("beforeDBAction", ["listItems",requestId,arguments])){
+                return;
+            }
+            var total_count = 0;
+            clientWithAuth.git.getTree({
+                owner:api.getGithubUser(),
+                repo:repo,
+                tree_sha: sourcePathSha
+            }).then( function(rst){
+                total_count = rst.data.tree;
+                
+                var promises = [],schema={};
+                if(withSchema){
+                    var p = api.readItem(requestId, repo, objectName, api.OBJ_SCHEMA_FILE,function(req, objectName, json, itemId){
+                            xui.merge(schema, json, 'all');
+                            return false;
+                        }, function(e){
+                            xui.log("No schema file "+api.OBJ_SCHEMA_FILE+":"+e);
+                            return false;
+                        }) ;
+                    if(p) promises.push(p );
+                }
+                var items = [], pool={},item,fid;
+               
+//TODO: 直接从 (cur_page - 1)*page_size 取
+                for(var i=(cur_page - 1)*page_size, l=Math.min(total_count, cur_page*page_size); i<; i++){
+                    var v = rst.data.tree[i];
+
+                    fid=v.name.replace(/\.json$/,"");
+                    var p=api.readItem(requestId+":"+fid, repo, objectName, fid, function(req, objectName, json, itemId){
+                        xui.merge( pool[itemId], json, 'without');
+                        return false;
+                    }, function(e){
+                        xui.log("No item file: " + fid+ " - " +e);
+                        return false;
+                    });
+                    if(p){
+                        promises.push(p);
+                        item = {
+                            // object id
+                            __o__id:fid
+                        };
+                        pool[fid] = item;
+                        // keep order
+                        items.push(item);
+                    }
+                }
+                Promise.all(promises).then(function(){
+                     var args = [requestId, objectName, items, schema, total_count||0, cur_page, page_size];
+                     if(false !== xui.tryF(onSuccess, args))
+                        api.fireEvent("onItemsList", args);
+                    api.fireEvent("afterDBAction", ["listItems",requestId]);
+                }).catch(e=>{
+                     api.fireEvent("onError", ["listItems",requestId, xui.getErrMsg(e),e]);
+                    api.fireEvent("afterDBAction", ["listItems",requestId]);
+                });
+            }).catch(function(e){
+                if(false!==xui.tryF(onFail,[e] )){
+                    api.fireEvent("onError", ["listItems",requestId, xui.getErrMsg(e),e]);
+                }
+                api.fireEvent("afterDBAction", ["listItems",requestId]);
+            }); 
+        },
+        
         itemExist:function(requestId, repo, objectName, itemId, onSuccess, onFail){
             var api=this,
                 clientWithAuth = api.getGithubClient();  
