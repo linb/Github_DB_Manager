@@ -13,8 +13,8 @@ The entire program is done with codeless programming. The GitHub login function 
  The file structure for this Github DB implement is:
 
 __crossui_db
->  objectName/tableName
->>    item/record
+>  objectName(tableName)
+>>    item(record)
 
 <hr>
 
@@ -24,7 +24,7 @@ In this DB implement, an item(a record) is saved as a JSON file
 
 > Strengths: Up to 100,000, ordered by updated, can query by word
 
-[NOTICE] Since the Github search engine need to take some time to build the index, the latest records in listItems API will lag a few seconds after editing (create, update, delete).
+<b>[NOTICE]</b> Since the Github search engine need to take some time to build the index, the latest records in listItems API will lag a few seconds after editing (create, update, delete).
 
 <hr>
 Web app url : https://linb.github.io/Github_DB_Manager
