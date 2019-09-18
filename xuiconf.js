@@ -94,11 +94,12 @@ xui.$cache.functions = {
     }
 };
 // ]]Global Functions
+
 // [[Global Data
 xui.$cache.data = {
     "$DATE_FORMAT":"gmt",
     "repoName":null,
-    "page_size":3
+    "page_size":5
 };
 // ]]Global Data
 // [[Constant Data
