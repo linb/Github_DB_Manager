@@ -346,6 +346,9 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
         },
 
         // for item
+        // uset search code
+        // weakness: delay several seconds
+        // strenthness: limit to 100,000, order by updated
         listItemsAdvanced : function(requestId, repo, objectName, withSchema, cur_page, page_size, wordIn, order, onSuccess, onFail){
             var api=this, user = api.getGithubUser(),
                 clientWithAuth = api.getGithubClient();
@@ -410,6 +413,9 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
             }); 
         },
         
+        // uset getContents
+        // weakness: limit to 1000, no order
+        // strenthness: almost real time
         listItems : function(requestId, repo, objectName, withSchema, cur_page, page_size, wordIn, order, onSuccess, onFail){
             var api=this, user = api.getGithubUser(),
                 clientWithAuth = api.getGithubClient();
