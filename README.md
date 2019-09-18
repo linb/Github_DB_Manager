@@ -24,6 +24,8 @@ In this DB implement, an item(a record) is saved as a JSON file
 
 > Strengths: Up to 100,000, ordered by updated, can query by word
 
+[NOTICE] Since the Github search engine need to take some time to build the index, the latest records in listItems API will lag a few seconds after editing (create, update, delete).
+
 <hr>
 Web app url : https://linb.github.io/Github_DB_Manager
 
