@@ -99,7 +99,7 @@ xui.$cache.functions = {
 xui.$cache.data = {
     "$DATE_FORMAT":"gmt",
     "repoName":null,
-    "page_size":20
+    "page_size":3
 };
 // ]]Global Data
 // [[Constant Data
