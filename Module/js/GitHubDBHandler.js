@@ -346,7 +346,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
         },
 
         // for item
-        listItems : function(requestId, repo, objectName, withSchema, cur_page, page_size, wordIn, order, onSuccess, onFail){
+        listItemsAdvanced : function(requestId, repo, objectName, withSchema, cur_page, page_size, wordIn, order, onSuccess, onFail){
             var api=this, user = api.getGithubUser(),
                 clientWithAuth = api.getGithubClient();
             if(false===api.fireEvent("beforeDBAction", ["listItems",requestId,arguments])){
@@ -410,7 +410,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
             }); 
         },
         
-        listItems2 : function(requestId, repo, objectName, withSchema, cur_page, page_size, onSuccess, onFail){
+        listItems : function(requestId, repo, objectName, withSchema, cur_page, page_size, wordIn, order, onSuccess, onFail){
             var api=this, user = api.getGithubUser(),
                 clientWithAuth = api.getGithubClient();
             if(false===api.fireEvent("beforeDBAction", ["listItems",requestId,arguments])){
