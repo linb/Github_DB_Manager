@@ -351,6 +351,16 @@ xui.Class('Module.TableView', 'xui.Module',{
                         ],
                         "method":"setPage",
                         "redirection":"other:callback:call"
+                    },
+                    {
+                        "desc":"ensure hot row",
+                        "type":"control",
+                        "target":"xui_ui_treegrid21",
+                        "args":[
+                            "{page.xui_ui_treegrid21.updateHotRow()}"
+                        ],
+                        "method":"updateHotRow",
+                        "redirection":"other:callback:call"
                     }
                 ]
             },
