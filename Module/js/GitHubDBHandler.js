@@ -417,12 +417,13 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                 return;
             }
             var total_count = 0;
-            clientWithAuth.git.getTree({
+            clientWithAuth.repos.getContents({
                 owner:api.getGithubUser(),
                 repo:repo,
-                tree_sha: sourcePathSha
-            }).then( function(rst){
-                total_count = rst.data.tree;
+                path: api.DB_ROOT_PATH +"/"+objectName,
+                rand:xui.rand()
+            }).then(function(rst){
+                total_count = rst.data.length;
                 
                 var promises = [],schema={};
                 if(withSchema){
@@ -438,7 +439,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                 var items = [], pool={},item,fid;
 
                 for(var i=(cur_page - 1)*page_size, l=Math.min(total_count, cur_page*page_size); i<l; i++){
-                    var v = rst.data.tree[i];
+                    var v = rst.data[i];
 
                     fid=v.name.replace(/\.json$/,"");
                     var p=api.readItem(requestId+":"+fid, repo, objectName, fid, function(req, objectName, json, itemId){
