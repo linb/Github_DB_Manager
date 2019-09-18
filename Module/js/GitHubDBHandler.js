@@ -437,7 +437,7 @@ xui.Class('Module.GitHubDBHandler', 'xui.Module',{
                 }
                 var items = [], pool={},item,fid;
 
-                for(var i=(cur_page - 1)*page_size, l=Math.min(total_count, cur_page*page_size); i<; i++){
+                for(var i=(cur_page - 1)*page_size, l=Math.min(total_count, cur_page*page_size); i<l; i++){
                     var v = rst.data.tree[i];
 
                     fid=v.name.replace(/\.json$/,"");
