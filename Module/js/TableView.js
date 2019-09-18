@@ -187,6 +187,7 @@ xui.Class('Module.TableView', 'xui.Module',{
             host.xui_ui_block41.append(
                 xui.create("xui.UI.HTMLButton")
                 .setHost(host,"xui_ui_btn_refresh")
+                .setTips("Since Github code research is not realtime, <br/>The latest records in the list will lag a few seconds after editing")
                 .setLeft("30em")
                 .setTop("0.8333333333333334em")
                 .setWidth("6.666666666666667em")
