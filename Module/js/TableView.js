@@ -357,9 +357,9 @@ xui.Class('Module.TableView', 'xui.Module',{
                         "type":"control",
                         "target":"xui_ui_treegrid21",
                         "args":[
-                            "{page.xui_ui_treegrid21.updateHotRow()}"
+                            "{page.xui_ui_treegrid21.addHotRow()}"
                         ],
-                        "method":"updateHotRow",
+                        "method":"addHotRow",
                         "redirection":"other:callback:call"
                     }
                 ]
