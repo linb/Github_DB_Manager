@@ -1485,7 +1485,7 @@ xui.Class('App', 'xui.Module',{
                         "type":"other",
                         "target":"msg",
                         "args":[
-                            "Since the Github search engine need to take some time to build the index<br/><br/>\nThe latest records in the list will lag a few seconds after editing",
+                            "Since the Github search engine need to take some time to build the index<br/><br/>\nThe latest records in the list will sync in a few seconds after editing",
                             "[NOTICE]",
                             200,
                             5000
