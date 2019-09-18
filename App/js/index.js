@@ -990,6 +990,42 @@ xui.Class('App', 'xui.Module',{
                             "args":[ ],
                             "method":"busy"
                         }
+                    ],
+                    "onItemCreate":[
+                        {
+                            "desc":"ac1",
+                            "type":"page",
+                            "target":"App",
+                            "args":[
+                                "{page.functions.showAlert}"
+                            ],
+                            "method":"functions.showAlert",
+                            "redirection":"other:callback:call"
+                        }
+                    ],
+                    "onItemDelete":[
+                        {
+                            "desc":"ac1",
+                            "type":"page",
+                            "target":"App",
+                            "args":[
+                                "{page.functions.showAlert}"
+                            ],
+                            "method":"functions.showAlert",
+                            "redirection":"other:callback:call"
+                        }
+                    ],
+                    "onItemUpdate":[
+                        {
+                            "desc":"ac1",
+                            "type":"page",
+                            "target":"App",
+                            "args":[
+                                "{page.functions.showAlert}"
+                            ],
+                            "method":"functions.showAlert",
+                            "redirection":"other:callback:call"
+                        }
                     ]
                 })
             );
@@ -1437,6 +1473,24 @@ xui.Class('App', 'xui.Module',{
                         "target":"msg",
                         "args":[ ],
                         "method":"busy"
+                    }
+                ]
+            },
+            "showAlert":{
+                "desc":"",
+                "params":[ ],
+                "actions":[
+                    {
+                        "desc":"msg",
+                        "type":"other",
+                        "target":"msg",
+                        "args":[
+                            "Since the Github search engine need to take some time to build the index<br/><br/>\nThe latest records in the list will lag a few seconds after editing",
+                            "[NOTICE]",
+                            200,
+                            5000
+                        ],
+                        "method":"message"
                     }
                 ]
             }
