@@ -94,7 +94,6 @@ xui.$cache.functions = {
     }
 };
 // ]]Global Functions
-
 // [[Global Data
 xui.$cache.data = {
     "$DATE_FORMAT":"gmt",
