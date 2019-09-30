@@ -1,4 +1,4 @@
-## Github_DB_Manager
+## Github_DB_Manager  (Serverless App)
 
 [Online tool for editing DB files in your GitHub Repositories.](https://linb.github.io/Github_DB_Manager)
 
