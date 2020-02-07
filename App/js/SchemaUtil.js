@@ -33,25 +33,13 @@ xui.Class('App.SchemaUtil', 'xui.Module',{
                         "id":"fname",
                         "caption":"First Name",
                         "type":"input",
-                        "width":"8em",
-                        "_cells":{ },
-                        "_serialId":"-h_a",
-                        "_colWidth":"8em",
-                        "_cellWidth":"8em",
-                        "_hcellheight":"2em",
-                        "_region":2
+                        "width":"8em"
                     },
                     {
                         "id":"lname",
                         "caption":"Last Name",
                         "type":"input",
-                        "width":"8em",
-                        "_cells":{ },
-                        "_serialId":"-h_b",
-                        "_colWidth":"8em",
-                        "_cellWidth":"8em",
-                        "_hcellheight":"2em",
-                        "_region":2
+                        "width":"8em"
                     },
                     {
                         "id":"age",
@@ -61,13 +49,7 @@ xui.Class('App.SchemaUtil', 'xui.Module',{
                         "precision":0,
                         "increment":10,
                         "min":0,
-                        "max":200,
-                        "_cells":{ },
-                        "_serialId":"-h_c",
-                        "_colWidth":"8em",
-                        "_cellWidth":"8em",
-                        "_hcellheight":"2em",
-                        "_region":2
+                        "max":200
                     }
                 ])
             );
